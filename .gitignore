@@ -39,3 +39,6 @@
 yarn-debug.log*
 .yarn-integrity
 credentials.yml.enc
+
+# Ignore email credentials
+local_env.yml
