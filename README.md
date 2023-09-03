@@ -21,4 +21,19 @@ Things you may want to cover:
 
 * Deployment instructions
 
+* Style Information
+  - Primary Color:
+      ```
+      #78d8c6
+      ```
+  - Secondary Color:
+      ```
+      #78d8c6
+      ```
+  - Ternary Color:
+      ```
+      #78d8c6
+      ```
+
+
 * ...

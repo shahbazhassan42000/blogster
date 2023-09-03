@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_31_182944) do
+ActiveRecord::Schema.define(version: 2023_09_01_112607) do
+
+  create_table "companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.string "logo"
+    t.string "poster"
+    t.text "about"
+    t.integer "active", default: 0
+    t.bigint "owner_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["owner_id"], name: "index_companies_on_owner_id"
+  end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,11 +35,19 @@ ActiveRecord::Schema.define(version: 2023_08_31_182944) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.string "username"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "profile_picture"
+    t.integer "owner", default: 0
+    t.integer "tenant_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "companies", "users", column: "owner_id"
 end
