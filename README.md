@@ -24,15 +24,15 @@ Things you may want to cover:
 * Style Information
   - Primary Color:
       ```
-      #78d8c6
+      #00c8aa
       ```
   - Secondary Color:
       ```
-      #78d8c6
+      #576e7f
       ```
   - Ternary Color:
       ```
-      #78d8c6
+      #77dac7
       ```
 
 

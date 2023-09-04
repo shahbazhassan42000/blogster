@@ -1,0 +1,25 @@
+<navbar class = 'd-flex justify-content-between align-items-center'>
+  <%# logo %>
+  <div class = 'd-flex align-items-center'>
+    <div class = 'main-logo-container'>
+      <%= image_tag 'logo.png', class: 'w-100 h-100 object-fit-cover' %>
+    </div>
+    <h1 class = 'ml-n3 text-primary'>Blogster</h1>
+  </div>
+  <%# nav %>
+  <ul class = 'list-unstyled m-0 d-flex gap-3 align-items-center'>
+    <% if user_signed_in? %>
+      <li>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'btn btn-primary ml-3'  %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-primary'  %>
+      </li>
+      <li>
+        <%= link_to "Login", new_user_session_path, class: 'btn btn-primary ml-3'  %>
+      </li>
+    <% end %>
+    
+  </ul>
+</navbar>

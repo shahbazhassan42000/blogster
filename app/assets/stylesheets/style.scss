@@ -1,0 +1,60 @@
+$primary: #00c8aa;
+$secondary: #576e7f;
+$tertiary: #77dac7;
+@import 'bootstrap';
+
+.custom-wrapper {
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+.main-logo-container {
+    width: 100px;
+    height: 100px;
+}
+.object-fit-cover {
+    object-fit: cover;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: '';
+  opacity: .8;
+  background: $secondary;
+  background: -moz-linear-gradient(45deg, $primary 0%, $secondary 100%);
+  background: -webkit-gradient(left bottom, right top, color-stop(0%, $primary), color-stop(100%, $secondary));
+  background: -webkit-linear-gradient(45deg, $primary 0%, $secondary 100%);
+  background: -o-linear-gradient(45deg, $primary 0%, $secondary 100%);
+  background: -ms-linear-gradient(45deg, $primary 0%, $secondary 100%);
+  background: linear-gradient(45deg, $primary 0%, $secondary 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$primary', endColorstr='$secondary', GradientType=1 );
+}
+/* Scroll Effect */
+html{
+    scroll-behavior: smooth;
+}
+.parallax {
+
+    /* Set a specific height */
+    min-height:100%;
+    
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-1 {
+    background-image: asset_url('bg-1.png');
+}
+
+
+/* Turn off parallax scrolling for mobile devices */
+@media only screen and (max-device-width: 1024px) {
+    .parallax {
+        background-attachment: scroll;
+    }
+}

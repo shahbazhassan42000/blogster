@@ -16,6 +16,8 @@ module Blogster
         env_vars[Rails.env].each { |key, value| ENV[key] = value }
       end
     end
+    config.assets.enabled = true
+    config.assets.compile = true
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
