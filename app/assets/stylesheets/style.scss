@@ -36,11 +36,7 @@ html{
     scroll-behavior: smooth;
 }
 .parallax {
-
-    /* Set a specific height */
     min-height:100%;
-    
-    /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -49,6 +45,10 @@ html{
 
 .bg-1 {
     background-image: asset_url('bg-1.png');
+    height: 75vh;
+}
+.top-20 {
+    top: 20%;
 }
 
 

@@ -1,13 +1,24 @@
   <%= stylesheet_link_tag 'home', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <section class = 'parallax bg-1 position-relative h-75'>
-    <div class = 'container'>
-      <h2>Hello Welcome to</h2>
-      <h1 class = 'text-uppercase'>Blogster</h1>
-    </div>
+  <section class = 'parallax bg-1 position-relative'>
     <div class = 'overlay'></div>
+    <div class = 'custom-wrapper position-absolute top-20'>
+      <div class = 'jumbotron shadow-lg'>
+        <h5 class = 'lead'>Hello Welcome to</h5>
+        <h1 class = 'text-uppercase display-1'>Blogster</h1>
+        <hr class="my-4">
+        <h5 class = 'lead'>
+          Unleash your creativity, where ideas take flight - step into the world of Blogster<br/>
+          Your story, your voice, your blog - discover it all at Blogster!"
+        </h5>
+      </div>
+      <div class="arrow bounce mx-1">
+          <a class="fa fa-arrow-down fa-2x" href="#"></a>
+      </div>
+    </div>
   </section>
 
 <h1>Blogster</h1>
+<%= image_tag @companies[0].logo %>
 <p class='text-danger'>Welcome to the <i class="fa fa-user"></i> blogster!</p>
 <% if user_signed_in? %>
   Logged in as <strong><%= current_user.email %></strong>.

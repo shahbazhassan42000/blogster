@@ -14,7 +14,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # GET /resource/confirmation?confirmation_token=abcdef
   def show
     super
-    resource.company.update(active: 1) if resource.errors.empty?
+    resource.company.update(active: true) if resource.errors.empty?
   end
 
   # protected

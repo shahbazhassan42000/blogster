@@ -27,7 +27,6 @@
   </div>
 
   <% if request.subdomain.blank? %>
-  <%= f.hidden_field :owner, value: 1 %>
     <%= f.fields_for :company do |company_form| %>
       <div class="field">
         <%= company_form.label :company %><br />

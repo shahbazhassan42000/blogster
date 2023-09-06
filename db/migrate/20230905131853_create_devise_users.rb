@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-class DeviseCreateUsers < ActiveRecord::Migration[6.1]
+class CreateDeviseUsers < ActiveRecord::Migration[6.1]
   def change
     create_table :users do |t|
       ## Database authenticatable
@@ -36,9 +34,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :username
       t.string :first_name
       t.string :last_name
-      t.string :profile_picture
-      t.integer :owner, default: 0
-      t.integer :tenant_id
+      t.string :profile_picture, default: 'default_profile_picture.png.png'
+      t.integer :role, default: 0
+      t.references :company, null: false, foreign_key: true
 
       t.timestamps null: false
     end
