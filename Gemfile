@@ -56,6 +56,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bootstrap', '~> 4.2.1'
+gem 'cancancan'
 gem 'devise', '~> 4.9'
 gem 'faker'
 gem 'guard-livereload'

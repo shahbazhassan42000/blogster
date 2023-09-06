@@ -1,11 +1,13 @@
 <navbar class = 'd-flex justify-content-between align-items-center'>
   <%# logo %>
-  <div class = 'd-flex align-items-center'>
-    <div class = 'main-logo-container'>
-      <%= image_tag 'logo.png', class: 'w-100 h-100 object-fit-cover' %>
+  <%= link_to root_path, id:'logo_link' do %>
+    <div class = 'd-flex align-items-center'>
+      <div class = 'main-logo-container'>
+        <%= image_tag 'logo.png', class: 'w-100 h-100 object-fit-cover' %>
+      </div>
+      <h1 class = 'ml-n3 text-primary'>Blogster</h1>
     </div>
-    <h1 class = 'ml-n3 text-primary'>Blogster</h1>
-  </div>
+  <% end %>
   <%# nav %>
   <ul class = 'list-unstyled m-0 d-flex gap-3 align-items-center'>
     <nav class="navbar navbar-expand-lg navbar-light">

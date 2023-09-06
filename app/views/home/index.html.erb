@@ -17,14 +17,26 @@
     </div>
   </section>
 
-<h1>Blogster</h1>
-<%= image_tag @companies[0].logo %>
-<p class='text-danger'>Welcome to the <i class="fa fa-user"></i> blogster!</p>
-<% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-<% end %>
+<h1 class = 'display-3'>Companies</h1>
+<div class = 'row'>
+  <% @companies.each do |company| %>
+    <div class="card mb-3 mr-3 shadow" style="max-width: 500px;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <%= image_tag company.logo, class: 'card-img' %>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= company.name %></h5>
+            <p class="card-text">
+              <small class="text-muted">
+                Last updated <%= time_ago_in_words(company.created_at) %> ago
+              </small>
+            </p>
+            <%= link_to "View", company_path(company), class: 'btn btn-primary'  %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -11,6 +11,9 @@ $tertiary: #77dac7;
     width: 100px;
     height: 100px;
 }
+navbar #logo_link:hover{
+    text-decoration: none;
+}
 .object-fit-cover {
     object-fit: cover;
 }
