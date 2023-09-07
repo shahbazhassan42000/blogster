@@ -42,6 +42,6 @@ class Ability
       end
       can :read, [Comment]
     end
-    can :read [Company, Category, Blog, User]
+    can :read, [Company, Category, Blog, User]
   end
 end

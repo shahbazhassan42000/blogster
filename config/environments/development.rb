@@ -93,4 +93,10 @@ Rails.application.configure do
   #   authentication: ENV['SMTP_AUTHENTICATION'],
   #   enable_starttls_auto: ENV['SMTP_ENABLE_STARTTLS_AUTO'].downcase.eql?('true') ? true : false
   # }
+
+  # for subdomains to work
+  config.hosts << 'lvh.me'
+  config.hosts << /[a-z0-9.]+\.lvh\.me/
+
+  APP_HOST = "#{ENV['HOST']}:#{ENV.fetch('PORT', 80)}"
 end
