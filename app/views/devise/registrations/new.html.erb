@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'signup'%>
 <div class="row no-gutters">
   <section class='col-md-4'>
     <h2>Sign up</h2>
@@ -35,9 +36,16 @@
             <%= company_form.text_field :name, class: "form-control", required: true %>
           </div>
           <div class="form-group">
-            <%= company_form.label :slug %>
-            <%= company_form.text_field :slug, class: "form-control", required: true %>
+            <div class='card p-3 bg-light'>
+              <p class='text-secondary'>
+                Your portal will be live at:
+              </p>
+              <strong class='text-primary'>
+                http://<span id='slug_view'></span>.lvh.me
+              </strong>
+            </div>
           </div>
+          <%= f.hidden_field :slug, value: '', id: 'slug_field'%>
         <% end %>
       <% else %>
         <%= f.hidden_field :role, value: :author %>

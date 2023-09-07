@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   constraints subdomain: false do
     root 'home#index'
+    get 'email_confirmation', to: 'home#email_confirmation'
     # resources :blogs, except: [:show] do
     #   post 'update_contributors' => 'blogs#update_contributors'
     # end

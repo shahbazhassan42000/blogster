@@ -14,7 +14,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # GET /resource/confirmation?confirmation_token=abcdef
   def show
     super
-    resource.company.update(active: true, owner: resource) if resource.errors.empty?
+    resource.company.update(active: true, owner: resource) if resource.owner? && resource.errors.empty?
   end
 
   # protected
@@ -25,7 +25,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # end
 
   # The path used after confirmation.
-  # def after_confirmation_path_for(resource_name, resource)
-  #   super(resource_name, resource)
-  # end
+  def after_confirmation_path_for(resource_name, resource)
+    email_confirmation_path
+  end
 end
