@@ -17,7 +17,7 @@ require 'faker'
     company_attributes: {
       name: company_name,
       slug: company_name.gsub(/[^a-zA-Z0-9]/, '').downcase,
-      active: true,
+      active: true
     }
   )
   user.confirm

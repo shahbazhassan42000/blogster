@@ -33,9 +33,9 @@
         <%= f.fields_for :company do |company_form| %>
           <div class="form-group">
             <%= company_form.label :company %>
-            <%= company_form.text_field :name, class: "form-control", required: true %>
+            <%= company_form.text_field :name, class: "form-control", required: true,id: 'company_name_field' %>
           </div>
-          <div class="form-group">
+          <div class="form-group" style="display: none;" id='slug_box'>
             <div class='card p-3 bg-light'>
               <p class='text-secondary'>
                 Your portal will be live at:
