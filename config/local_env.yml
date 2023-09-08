@@ -1,0 +1,12 @@
+development:
+  HOST: 'lvh.me'
+  PORT: '3000'
+  SMTP_ADDRESS: 'smtp.gmail.com'
+  SMTP_PORT: '587'
+  SMTP_DOMAIN: 'gmail.com'
+  SMTP_USERNAME: 'shahbaz.hassan@7vals.com'
+  SMTP_PASSWORD: 'zzkdypeciyqboviq'
+  SMTP_AUTHENTICATION: 'plain'
+  SMTP_ENABLE_STARTTLS_AUTO: 'true'
+
+production:
