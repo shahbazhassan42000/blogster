@@ -1,0 +1,43 @@
+  <%= stylesheet_link_tag 'home', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <section class = 'parallax bg-1 position-relative d-none d-md-block'>
+    <div class = 'overlay'></div>
+    <div class = 'custom-wrapper position-absolute top-20'>
+      <div class = 'jumbotron shadow-lg'>
+        <h5 class = 'lead'>Hello Welcome to</h5>
+        <h1 class = 'text-uppercase display-1'>Blogster</h1>
+        <hr class="my-4">
+        <h5 class = 'lead'>
+          Unleash your creativity, where ideas take flight - step into the world of Blogster<br/>
+          Your story, your voice, your blog - discover it all at Blogster!"
+        </h5>
+      </div>
+      <div class="arrow bounce mx-1">
+          <a class="fa fa-arrow-down fa-2x" href="#"></a>
+      </div>
+    </div>
+  </section>
+
+<h1 class = 'display-3'>Companies</h1>
+<div class = 'row justify-content-center'>
+  <% @companies.each do |company| %>
+    <div class="card mb-3 mr-3 shadow" style="max-width: 500px;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <%= image_tag company.logo, class: 'card-img' %>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= company.name %></h5>
+            <p class="card-text">
+              <small class="text-muted">
+                Last updated <%= time_ago_in_words(company.created_at) %> ago
+              </small>
+            </p>
+            <%= link_to "View",  company_url(company), class: 'btn btn-primary'  %>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
