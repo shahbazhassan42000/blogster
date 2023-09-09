@@ -1,0 +1,36 @@
+<div class='d-flex justify-content-between align-items-center mb-1'>
+  <input type = 'text' 
+         name = 'category_name'
+         value = '<%= category.name %>'
+         class = 'border-0 p-1 text-truncate'
+         id = 'category_<%= category.id %>'
+         title = '<%= category.name %>'
+         data-category-name = '<%= category.name %>'
+         disabled
+  />
+  <% if current_user_is_owner? %>
+    <div class = 'ml-2'>
+      <i class = 'text-white bg-danger p-1 fa fa-close btn p-0 category_cancel_btn'
+         title = 'Cancel'
+         style = 'display: none;'
+         data-category-id = '<%= category.id %>'
+         data-category-name = '<%= category.name %>'
+      ></i>
+      <i class = 'text-white bg-success p-1 fa fa-check btn p-0 category_confirm_btn' 
+         title = 'Confirm'
+         style = 'display: none;'
+         data-category-id = '<%= category.id %>'
+         data-category-name = '<%= category.name %>'
+      ></i>
+      <i class = 'text-warning fa fa-edit btn p-0 category_edit_btn' 
+         data-category-id = '<%= category.id %>'
+         title = 'Edit Category'
+      ></i>
+      <i class = 'text-danger fa fa-trash btn p-0' 
+         data-category-id = '<%= category.id %>' 
+         title = 'Delete Category'
+         data-confirm = "Are you sure?"
+      ></i>
+    </div>
+  <% end %>
+</div>

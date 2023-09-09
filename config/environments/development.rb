@@ -96,7 +96,7 @@ Rails.application.configure do
 
   # for subdomains to work
   config.hosts << 'lvh.me'
-  config.hosts << /[a-z0-9.]+\.lvh\.me/
+  config.hosts << /.+\.lvh\.me/
 
   APP_HOST = "#{ENV['HOST']}:#{ENV.fetch('PORT', 80)}"
 end

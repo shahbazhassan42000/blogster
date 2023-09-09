@@ -1,20 +1,59 @@
+<%= javascript_include_tag 'category_crud', media: 'all', 'data-turbolinks-track': 'reload' %>
 <section class='row justify-content-center'>
   <main class='col-md-8 border-right'>
     <div class='d-flex flex-column align-items-center'>
        <h1>Blogs</h1>
-       <%= current_user%>
+       <p>
+        Current User: <%= current_user&.username%>
+       </p>
+       <p>
+        Current User's Company: <%= current_user&.company&.name%>
+       </p>
+        <p>
+          Current Company: <%= @company.name%>
+        </p>
+        <p>
+          Current Company owner email: <%= @company.owner.email%>
+        </p>
     </div>
   </main>
   <aside class='col-md-4'>
     <div class='d-flex flex-column align-items-center'>
+      <p id='category_error' class = 'alert alert-danger alert-dismissible fade show' style="display: none;" role = 'alert'>
+        <span id='category_error_message'><%= alert %>avc</span>
+        <button type="button" class="close" id='category_error_close_btn'>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </p>
+      <%# Category ADD %>
       <% if current_user_is_owner? %>
-        <%= form_with model: @category, class:'d-flex flex-column'  do |f|%>
-          <%= f.text_field :name, placeholder: 'Category name', class: 'form-control' %>
-          <%= f.hidden_field :company_id, value: @company.id%>
-          <%= f.hidden_field :owner_id, value: current_user.id %>
-          <%= f.submit 'Add Category', class: 'btn btn-primary shadow mt-3' %>
+        <%= form_with model: @category, url: categories_path, remote: true,  class:'d-flex flex-column', id: 'add_category_form'  do |f|%>
+          <%= f.text_field :name, placeholder: 'Category name', class: 'form-control', required: true %>
+          <%= f.hidden_field :company_id, value: @company.id %>
+          <%= f.hidden_field :owner_id, value: @current_user.id %>
+          <%= f.submit 'Add Category', data: { disable_with: "Adding..." }, class: 'btn btn-primary shadow mt-3', id: 'add_category_btn' %>
         <% end %>
       <% end %>
+      <%# Categories LIST %>
+      <div class="accordion mt-5 mx-75" id="categories_list_heading">
+        <div class="card border">
+          <div class="card-header d-flex justify-content-center" id="categories_header">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#categories_data" aria-expanded="true" aria-controls="categories_data">
+                Categories
+              </button>
+            </h2>
+          </div>
+
+          <div id="categories_data" class="collapse show border" aria-labelledby="categories_header" data-parent="#categories_list_heading">
+            <div class="card-body flex-column" id='categories_list'>
+              <% @categories.each do |category| %>
+                <%= render "shared/category", category: category  %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </aside>
 </section>

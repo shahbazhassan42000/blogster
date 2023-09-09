@@ -1,0 +1,8 @@
+var category_name_field = $('#category_<%= @category.id %>');
+<% if flash[:notice] %>
+  category_name_field.val('<%= @category.name %>');
+<% else %>
+  category_name_field.val(category_name_field.data('category-name'));
+  $("#category_error_message").text('<%= flash[:alert] %>');
+  $("#category_error").show();
+<% end %>

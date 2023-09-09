@@ -1,4 +1,6 @@
 class Category < ApplicationRecord
+  include Tenantable
+
   belongs_to :company
   belongs_to :owner, class_name: 'User', foreign_key: 'owner_id', inverse_of: :categories
   has_many :blogs, inverse_of: :category

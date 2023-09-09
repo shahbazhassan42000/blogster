@@ -18,7 +18,10 @@
         <ul class="navbar-nav mr-auto">
           <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'btn btn-primary ml-3'  %>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { 
+                turbo_method: :delete,
+                turbo_confirm: 'Are you sure?' 
+              }, class: 'btn btn-primary ml-3'  %>
             </li>
           <% else %>
             <li class="nav-item">

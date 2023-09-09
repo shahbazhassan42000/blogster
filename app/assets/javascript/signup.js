@@ -3,9 +3,7 @@ $(document).ready( function() {
   var slug_view = $('#slug_view');
   var slug_box = $('#slug_box');
 
-
-
-
+  // setting company slug/subdomain
   company_name_field.on('input', function(){
     var company_name = company_name_field.val().trim();
     if(company_name !== ''){
@@ -14,7 +12,6 @@ $(document).ready( function() {
       slug_view.text(company_name);
       slug_box.show();
     }else{
-      console.log('hiding...');
       slug_box.hide();
     }
   });

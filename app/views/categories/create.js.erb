@@ -1,0 +1,10 @@
+var category_add_btn = $('#add_category_btn')
+<% if @category.errors.any? %>
+  $("#category_error_message").text('<%= flash[:alert] %>');
+  $("#category_error").show();
+<% else %>
+  $("#categories_list").append('<%= j render "shared/category", category: @category %>');
+<% end %>
+$('#add_category_form').trigger('reset');
+category_add_btn.val('Add Category');
+category_add_btn.prop('disabled', false);

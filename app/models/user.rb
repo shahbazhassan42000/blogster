@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   belongs_to :company, inverse_of: :users
   has_many :blogs, inverse_of: :author, foreign_key: 'author_id'
-  has_many :categories, inverse_of: :owner, foreign_key: 'owner_id'
+  has_many :categories, inverse_of: :owner, foreign_key: 'owner_id', dependent: :destroy
 
   validates :username, presence: true, uniqueness: true
   validates :role, presence: true

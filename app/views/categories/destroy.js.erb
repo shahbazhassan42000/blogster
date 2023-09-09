@@ -1,0 +1,6 @@
+<% if @category.destroyed? %>
+  $('#categories_list').find("[data-category-id=<%= @category.id %>]").closest('.d-flex').remove();
+<% else %>
+  $("#category_error_message").text('<%= flash[:alert] %>');
+  $("#category_error").show();
+<% end %>

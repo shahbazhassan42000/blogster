@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   constraints subdomain: /.+/ do
     get '/', to: 'companies#show'
+    resources :categories, except: [:show]
     resources :blogs
     resources :companies, except: [:show]
   end
@@ -17,8 +18,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     confirmations: 'users/confirmations'
   }
-  devise_scope :user do
-    match '/users/sign_out', controller: 'devise/sessions', action: 'destroy', via: :all
-  end
+  # devise_scope :user do
+  #   match '/users/sign_out', controller: 'devise/sessions', action: 'destroy', via: :all
+  # end
   match '*unmatched', to: 'application#render404', via: :all
 end
