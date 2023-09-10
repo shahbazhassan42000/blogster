@@ -1,0 +1,17 @@
+<section class='d-flex flex-column'>
+<nav class='border-top border-bottom bg-secondary d-flex justify-content-between px-5 py-3'>
+  <div>
+  </div>
+  <div>
+    <% if can? :create, Blog %>
+      <%= link_to new_user_blog_path(current_user), class: 'btn btn-primary' do %>
+        <i class='fa fa-add mr-2'></i>Create Blog
+      <% end %>
+    <% end %>
+  </div>
+</nav>
+<section class='px-5'>
+  <%# blogs list %>
+  <%= render "shared/blogs_table", blogs: current_user.blogs if current_user.author? %>
+</section>
+</section>

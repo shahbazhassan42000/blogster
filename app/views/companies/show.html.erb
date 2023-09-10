@@ -1,26 +1,24 @@
 <%= javascript_include_tag 'category_crud', media: 'all', 'data-turbolinks-track': 'reload' %>
+
 <section class='row justify-content-center'>
-  <main class='col-md-8 border-right'>
+  <main class='col-md-8'>
     <div class='d-flex flex-column align-items-center'>
-       <h1>Blogs</h1>
-       <p>
-        Current User: <%= current_user&.username%>
-       </p>
-       <p>
-        Current User's Company: <%= current_user&.company&.name%>
-       </p>
-        <p>
-          Current Company: <%= @company.name%>
-        </p>
-        <p>
-          Current Company owner email: <%= @company.owner.email%>
-        </p>
+       <h1 class='mb-5'>Blogs</h1>
+        <div class='row justify-content-center'>
+          <% if @blogs.present? %>
+            <% @blogs.each do |blog| %>
+              <%= render "shared/blog", blog: blog%>
+            <% end %>
+          <% else %>
+            <%= image_tag 'no_record.gif', alt: 'No blogs found' %>
+          <% end %>
+        </div>
     </div>
   </main>
-  <aside class='col-md-4'>
-    <div class='d-flex flex-column align-items-center'>
+  <aside class='border-left col-md-4 d-none d-lg-block'>
+    <div class='d-flex flex-column align-items-center sticky-top' style="padding-top: 6.5rem;">
       <p id='category_error' class = 'alert alert-danger alert-dismissible fade show' style="display: none;" role = 'alert'>
-        <span id='category_error_message'><%= alert %>avc</span>
+        <span id='category_error_message'><%= alert %></span>
         <button type="button" class="close" id='category_error_close_btn'>
           <span aria-hidden="true">&times;</span>
         </button>
@@ -35,18 +33,18 @@
         <% end %>
       <% end %>
       <%# Categories LIST %>
-      <div class="accordion mt-5 mx-75" id="categories_list_heading">
+      <div class="accordion mt-5 w-75 card" id="categories_list_heading">
         <div class="card border">
           <div class="card-header d-flex justify-content-center" id="categories_header">
             <h2 class="mb-0">
-              <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#categories_data" aria-expanded="true" aria-controls="categories_data">
+              <button class="btn btn-link btn-block text-left" style="font-size: 1.5rem;" type="button" data-toggle="collapse" data-target="#categories_data" aria-expanded="true" aria-controls="categories_data">
                 Categories
               </button>
             </h2>
           </div>
 
           <div id="categories_data" class="collapse show border" aria-labelledby="categories_header" data-parent="#categories_list_heading">
-            <div class="card-body flex-column" id='categories_list'>
+            <div class="card-body flex-column" id='categories_list' style="max-height: 200px; overflow-y: auto;">
               <% @categories.each do |category| %>
                 <%= render "shared/category", category: category  %>
               <% end %>
@@ -54,6 +52,38 @@
           </div>
         </div>
       </div>
+      <%# Authors Carousel %>
+      <% if @authors.present? %>
+        <h4 class='mt-5 mb-3 text-primary'>Authors</h4>
+        <div id="authors_carousel" class="carousel slide text-center card mb-5 w-75" data-ride="carousel">
+          <div class="carousel-inner">
+            <%# author cards %>
+            <% @authors.each do |author| %>
+              <div class="carousel-item px-5 <%= 'active' if @authors.first == author%>">
+                <div class='px-5 pt-5'>
+                  <%= image_tag resource_image_url(author, :avatar, 'default_profile_picture.png'), width: 150, class: 'rounded-circle shadow mb-4'%>
+                </div>
+                <div class="row d-flex justify-content-center">
+                  <div>
+                    <h5 class="mb-3"><%= author.username %></h5>
+                    <p><%= author.email %></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <button class="carousel-control-prev my-auto btn btn-primary" type="button" style="height: fit-content;" data-target="#authors_carousel"
+            data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+          </button>
+          <button class="carousel-control-next my-auto btn btn-primary" style="height: fit-content;"  type="button" data-target="#authors_carousel"
+            data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </button>
+        </div>
+      <% end %>
     </div>
   </aside>
 </section>

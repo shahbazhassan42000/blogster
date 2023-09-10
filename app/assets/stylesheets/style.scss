@@ -4,18 +4,22 @@ $tertiary: #77dac7;
 @import 'bootstrap';
 
 .custom-wrapper {
-    padding-left: 6rem;
-    padding-right: 6rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+.custom-wrapper-fluid {
+  margin-left: -6rem;
+	margin-right: -6rem;
 }
 .main-logo-container {
-    width: 100px;
-    height: 100px;
+  width: 100px;
+  height: 100px;
 }
 navbar #logo_link:hover{
-    text-decoration: none;
+  text-decoration: none;
 }
 .object-fit-cover {
-    object-fit: cover;
+  object-fit: cover;
 }
 .overlay {
   position: absolute;
@@ -36,28 +40,28 @@ navbar #logo_link:hover{
 }
 /* Scroll Effect */
 html{
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 .parallax {
-    min-height:100%;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  min-height:100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .bg-1 {
-    background-image: asset_url('bg-1.png');
-    height: 75vh;
+	background-image: asset_url('bg-1.png');
+	height: 75vh;
 }
 .top-20 {
-    top: 20%;
+  top: 20%;
 }
 
 
 /* Turn off parallax scrolling for mobile devices */
 @media only screen and (max-device-width: 1024px) {
-    .parallax {
-        background-attachment: scroll;
-    }
+	.parallax {
+		background-attachment: scroll;
+	}
 }

@@ -16,11 +16,11 @@ class ApplicationController < ActionController::Base
   #   end
   # end
 
-  protected
-
   def render404
     render file: Rails.root.join('public', '404.html'), status: :not_found, layout: false
   end
+
+  protected
 
   def set_company
     @company = Company.find_by(slug: request.subdomain) if request.subdomain.present?

@@ -59,7 +59,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  protected
+  private
 
   def category_params
     params.permit(:name, :company_id, :owner_id)

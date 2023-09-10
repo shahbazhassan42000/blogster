@@ -34,7 +34,6 @@ class CreateDeviseUsers < ActiveRecord::Migration[6.1]
       t.string :username
       t.string :first_name
       t.string :last_name
-      t.string :profile_picture, default: 'default_profile_picture.png.png'
       t.integer :role, default: 0
       t.references :company, null: false, foreign_key: true
 

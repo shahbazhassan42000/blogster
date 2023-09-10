@@ -12,12 +12,7 @@
     <%= stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
   <body class = 'custom-wrapper'>
-    <% if request.subdomain.present? %>
-      <%= render 'shared/company_header' %>
-    <% else %>
-      <%= render 'shared/header' %>
-    <% end %>
-    
+    <%= render 'shared/header' %>    
     <% if notice %>
       <p class = 'notice alert alert-warning alert-dismissible fade show' role = 'alert'>
         <%= notice %>

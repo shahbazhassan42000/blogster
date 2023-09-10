@@ -7,7 +7,6 @@ class CreateBlogs < ActiveRecord::Migration[6.1]
       t.string :title
       t.text :content
       t.integer :status, default: 0
-      t.string :featured_image, default: 'default_picture.png'
       t.text :excerpt
 
       t.timestamps

@@ -5,6 +5,8 @@ class Company < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :slug, presence: true, uniqueness: true, format: { with: /\A[a-z0-9]+\Z/ }
+  has_one_attached :logo
+  has_one_attached :banner
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }

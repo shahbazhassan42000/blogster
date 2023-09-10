@@ -7,7 +7,8 @@ class Ability
     user ||= User.new
     if user.persisted?
       if user.owner?
-        can :manage, :all
+        can :manage, Category
+        can %i[update destory], Blog, company_id: user.company_id
         # can %i[update destroy], Category, owner_id: user.id
       elsif user.author?
         can %i[create destroy], Blog, author_id: user.id

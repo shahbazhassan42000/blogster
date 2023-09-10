@@ -1,0 +1,21 @@
+<div class="card mb-5 mr-5 shadow" style="max-width: 900px;">
+  <div class="row no-gutters">
+    <div class="col-md-6">
+      <%= image_tag resource_image_url(blog, :featured_image, 'default_picture.png'), class: 'card-img object-fit-cover w-100 h-100', alt: blog.title %>
+    </div>
+    <div class="col-md-6 d-flex flex-column justify-content-between p-4">
+      <div>
+        <%= render "shared/author_minimal", author: blog.author %>
+        <h2 class="card-title mb-1"><%= blog.title %></h2>
+        <h5 class='mb-3 text-muted'><%= blog.category.name %></h5>
+        <p class="card-text text-dark"><%= blog.excerpt %></p>
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <%= link_to "View",  category_blog_path(blog, blog.category), class: 'btn btn-primary shadow px-4'  %>
+        <small class="text-muted">
+            <%= blog.created_at.strftime("%B %d, %Y") %>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>

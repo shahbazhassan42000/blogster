@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blogster</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <%= render 'shared/header' %>
+    <section class='row no-gutters'>
+      <aside class='col-md-1 border-right'>
+        <div class='d-flex flex-column justify-content-between sticky-top' style="min-height: 100vh; top: 7rem; padding-bottom: 6rem;">
+          <div class='d-flex flex-column'>
+            <%= image_tag 'danding_cat.gif', width: 50, class: 'mx-auto' %>
+            <%= link_to 'Dashboard', dashboard_url(current_user), class: 'h5 px-2 py-2 border rounded bg-primary text-white shadow', style: "text-decoration: none;" %>
+            <%= link_to 'Profile','#', class: 'h5 px-2 py-2 border rounded bg-primary text-white shadow', style: "text-decoration: none;" %>
+          </div>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { 
+                  turbo_method: :delete,
+                  turbo_confirm: 'Are you sure?'
+                }, class: 'h5 px-2 py-2 border rounded bg-primary text-white shadow', style: "text-decoration: none;"  %>	
+        </div>
+      </aside>
+      <main class='col-md-11'>
+        <% if notice %>
+          <p class = 'notice alert alert-warning alert-dismissible fade show' role = 'alert'>
+            <%= notice %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </p>
+        <% end %>
+        <% if alert %>
+          <p class = 'alert alert-danger alert-dismissible fade show' role = 'alert'>
+            <%= alert %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </p>
+        <% end %>
+        <%= yield %>
+      </main>
+    </section>
+  </body>
+</html>

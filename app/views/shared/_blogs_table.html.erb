@@ -1,0 +1,32 @@
+<section class='my-5'>
+  <h1>Blogs</h1>
+  <% if blogs.present? %>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Blog Title 1</td>
+            <td>2023-09-10</td>
+            <td>Author Name</td>
+            <td>
+              <a href="#" class="btn btn-primary btn-sm">Edit</a>
+              <a href="#" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <% else %>
+    <%= image_tag 'no_record.gif', alt: 'No Blog present' %>
+  <% end %>
+</section>
