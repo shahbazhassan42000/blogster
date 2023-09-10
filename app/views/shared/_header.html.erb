@@ -21,7 +21,7 @@
                 <%= link_to "Dashboard", dashboard_url(current_user), class: 'btn btn-primary' %>
             </li>
             <li class='nav-item mr-3'>
-                <%= link_to "My Company", company_url(current_user.company), class: 'btn btn-primary' if current_user.owner? %>
+                <%= link_to "My Company", company_url(current_user.company), class: 'btn btn-primary' %>
             </li>
             <li class='nav-item mr-3'>
                 <h3 class='m-0 text-dark'>Hi, <%= current_user.username %></h3>
@@ -32,7 +32,7 @@
               </a>
               <div class="dropdown-menu" style="z-index: 9999;">
                 <%= link_to "Dashboard", dashboard_url(current_user), class: 'dropdown-item'  %>
-                <%= link_to "My Company", company_url(current_user.company), class: 'dropdown-item' if current_user.owner? %>
+                <%= link_to "My Company", company_url(current_user.company), class: 'dropdown-item' %>
                 <%= link_to "Profile", "#{dashboard_url(current_user)}/profile", class: 'dropdown-item'  %>
                 <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { 
                   turbo_method: :delete,

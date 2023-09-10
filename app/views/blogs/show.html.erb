@@ -1,12 +1,32 @@
 
-<section class='row justify-content-center'>
-  <main class='col-md-8'>
+<section class='row justify-content-center mt-5'>
+  <main class='col-md-9'>
     <div class='d-flex flex-column'>
+      <div style='height: 500px'>
+        <%= image_tag resource_image_url(@blog, :featured_image, 'default_picture.png'), class: 'w-100 h-100 object-fit-cover rounded shadow' %>
+      </div>
+      <h1 class='mb-0 mt-3 text-dark'><%= @blog.title %></h1>
+      <div class='d-flex justify-content-between text-muted mb-3 mr-2'>
+        <p>
+          Published by <%= @blog.author.username %> on <%= @blog.created_at.strftime("%B %d, %Y") %>
+        </p>
+        <p>Category: <%= @blog.category.name %></p>
+      </div>
+      <%# Content %>
+      <p><%= @blog.content %></p>
     </div>
   </main>
-  <aside class='border-left col-md-4 d-none d-lg-block'>
-    <div class='d-flex flex-column align-items-center sticky-top' style="padding-top: 6.5rem;">
-    
+  <aside class='border-left col-md-3 d-none d-lg-block'>
+    <div class='d-flex flex-column align-items-center sticky-top' style="top: 8rem;">
+      <div class="card pt-3 mx-3 shadow">
+        <div class='card-img-top px-5'>
+          <%= image_tag resource_image_url(@blog.author, :avatar, 'default_profile_picture.png'), class: 'w-100 h-100 object-fit-cover' %>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title text-center"><%= @blog.author.username %></h3>
+          <p class="card-text text-muted text-center"><%= @blog.author.email %></p>
+        </div>
+      </div>
     </div>
   </aside>
 </section>

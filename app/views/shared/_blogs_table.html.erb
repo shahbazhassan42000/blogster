@@ -6,22 +6,32 @@
         <thead>
           <tr>
             <th>Title</th>
-            <th>Date</th>
+            <th>Created at</th>
             <th>Category</th>
             <th>Status</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Blog Title 1</td>
-            <td>2023-09-10</td>
-            <td>Author Name</td>
-            <td>
-              <a href="#" class="btn btn-primary btn-sm">Edit</a>
-              <a href="#" class="btn btn-danger btn-sm">Delete</a>
-            </td>
-          </tr>
+          <% blogs.each do |blog| %>
+            <tr>
+              <td><%= blog.title %></td>
+              <td><%= blog.created_at.strftime("%B %d, %Y") %></td>
+              <td><%= blog.category.name %></td>
+              <td><%= blog.status %></td>
+              <td class='d-flex justify-content-center'>
+                <%= link_to category_blog_path(blog.category, blog) do %>
+                  <i class='fa fa-eye bg-success text-white p-2 card m-0 mr-3' title='View'></i>
+                <% end %>
+                <%= link_to edit_category_blog_path(blog.category, blog) do %>
+                  <i class='fa fa-edit bg-warning text-white p-2 card m-0 mr-3' title='Edit'></i>
+                <% end %>
+                <%= link_to user_blog_path(blog.author, blog), method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <i class='fa fa-trash bg-danger text-white p-2 card m-0' title='Delete'></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>

@@ -1,21 +1,30 @@
-<div class="card mb-5 mr-5 shadow" style="max-width: 900px;">
-  <div class="row no-gutters">
-    <div class="col-md-6">
-      <%= image_tag resource_image_url(blog, :featured_image, 'default_picture.png'), class: 'card-img object-fit-cover w-100 h-100', alt: blog.title %>
-    </div>
-    <div class="col-md-6 d-flex flex-column justify-content-between p-4">
-      <div>
-        <%= render "shared/author_minimal", author: blog.author %>
-        <h2 class="card-title mb-1"><%= blog.title %></h2>
-        <h5 class='mb-3 text-muted'><%= blog.category.name %></h5>
-        <p class="card-text text-dark"><%= blog.excerpt %></p>
-      </div>
-      <div class="d-flex justify-content-between align-items-center">
-        <%= link_to "View",  category_blog_path(blog, blog.category), class: 'btn btn-primary shadow px-4'  %>
-        <small class="text-muted">
-            <%= blog.created_at.strftime("%B %d, %Y") %>
-        </small>
-      </div>
-    </div>
+<%= form_with(model: blog, url: blog.id ? user_blog_path(blog.author, blog) : user_blogs_path(current_user) ) do |form| %>
+  <div class="form-group">
+    <%= form.label :title, class: 'font-weight-bold' %>
+    <%= form.text_field :title, class: 'form-control', placeholder: 'Enter the title of your blog' %>
   </div>
-</div>
+
+  <div class="form-group">
+    <%= form.label :category_id, 'Category', class: 'font-weight-bold' %>
+    <%= form.collection_select :category_id, Category.for_company(@company), :id, :name, { prompt: 'Select a category' }, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :content, class: 'font-weight-bold' %>
+    <%= form.text_area :content, class: 'form-control', rows: 10, placeholder: 'Write your blog content here' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :excerpt, class: 'font-weight-bold' %>
+    <%= form.text_area :excerpt, class: 'form-control', rows: 4, placeholder: 'Enter a short excerpt of your blog' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :featured_image, class: 'font-weight-bold' %>
+    <%= form.file_field :featured_image, class: 'form-control-file', accept: 'image/*' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit blog.id ? 'Update Blog' : 'Create Blog', class: 'btn btn-primary' %>
+  </div>
+<% end %>
