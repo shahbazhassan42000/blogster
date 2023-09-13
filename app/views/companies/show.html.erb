@@ -1,19 +1,36 @@
 <%= javascript_include_tag 'category_crud', media: 'all', 'data-turbolinks-track': 'reload' %>
 
 <section class='row justify-content-center'>
-  <main class='col-md-8'>
-    <div class='d-flex flex-column align-items-center'>
-       <h1 class='mb-5'>Blogs</h1>
-        <div class='row justify-content-center'>
-          <% if @blogs.present? %>
-            <% @blogs.each do |blog| %>
-              <%= render "shared/blog_card", blog: blog%>
-            <% end %>
-          <% else %>
-            <%= image_tag 'no_record.gif', alt: 'No blogs found' %>
-          <% end %>
+  <%# Banner %>
+  <main class='col-md-8 mt-5'>
+    <%# Categories BLOGS %>
+    <% Current.company.categories.first(5).each do |category| %> 
+      <% if category.blogs.present? %>
+        <div class="accordion border-bottom" id="category_<%= category.id %>_header_box">
+          <div>
+            <div id="category_<%= category.id %>_header">
+              <button class="btn" style="font-size: 1.5rem;" type="button" data-toggle="collapse" data-target="#category_<%= category.id %>_blogs_box" aria-expanded="true" aria-controls="category_<%= category.id %>_blogs_box">
+                <%= category.name %>
+              </button>
+            </div>
+          </div>
         </div>
-    </div>
+        <div id="category_<%= category.id %>_blogs_box" class="collapse show" aria-labelledby="category_<%= category.id %>_header" data-parent="#category_<%= category.id %>_header_box">
+          <div class="card-body d-flex pb-0" id='category_<%= category.id %>_blogs'>
+            <% category.blogs.first(3).each do |blog| %>
+              <%= render "shared/blog_card_mini", blog: blog%>
+            <% end %>
+          </div>
+          <div class='d-flex justify-content-between pb-3' style="padding-right: 40px;">
+            <div>
+            </div>
+            <div>
+              <%= link_to 'View More', category_path(category), class: 'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   </main>
   <aside class='border-left col-md-4 d-none d-lg-block'>
     <div class='d-flex flex-column align-items-center sticky-top' style="padding-top: 6.5rem;">
@@ -24,10 +41,10 @@
         </button>
       </p>
       <%# Category ADD %>
-      <% if current_user_is_owner? %>
-        <%= form_with model: @category, url: categories_path, remote: true,  class:'d-flex flex-column', id: 'add_category_form'  do |f|%>
+      <% if can? :create, Category %>
+        <%= form_with model: @category, remote: true,  class:'d-flex flex-column', id: 'add_category_form'  do |f|%>
           <%= f.text_field :name, placeholder: 'Category name', class: 'form-control', required: true %>
-          <%= f.hidden_field :company_id, value: @company.id %>
+          <%= f.hidden_field :company_id, value: Current.company.id %>
           <%= f.hidden_field :owner_id, value: @current_user.id %>
           <%= f.submit 'Add Category', data: { disable_with: "Adding..." }, class: 'btn btn-primary shadow mt-3', id: 'add_category_btn' %>
         <% end %>
@@ -45,7 +62,7 @@
 
           <div id="categories_data" class="collapse show border" aria-labelledby="categories_header" data-parent="#categories_list_heading">
             <div class="card-body flex-column" id='categories_list' style="max-height: 200px; overflow-y: auto;">
-              <% @categories.each do |category| %>
+              <% Current.company.categories.each do |category| %>
                 <%= render "shared/category", category: category  %>
               <% end %>
             </div>
@@ -66,7 +83,7 @@
                 <div class="row d-flex justify-content-center">
                   <div>
                     <h5 class="mb-3"><%= author.username %></h5>
-                    <p><%= author.email %></p>
+                    <p><%= author.email if user_signed_in? %></p>
                   </div>
                 </div>
               </div>

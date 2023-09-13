@@ -1,5 +1,12 @@
 
-<section class='row justify-content-center mt-5'>
+<nav aria-label="breadcrumb" class="my-2">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to 'Categories', root_path %></li>
+      <li class="breadcrumb-item active" aria-current="page"><%= link_to @blog.category.name, category_path(@blog.category) %></li>
+      <li class="breadcrumb-item active" aria-current="page"><%= @blog.title %></li>
+    </ol>
+  </nav>
+<section class='row justify-content-center'>
   <main class='col-md-9'>
     <div class='d-flex flex-column'>
       <div style='height: 500px'>
@@ -10,10 +17,14 @@
         <p>
           Published by <%= @blog.author.username %> on <%= @blog.created_at.strftime("%B %d, %Y") %>
         </p>
-        <p>Category: <%= @blog.category.name %></p>
+        <p>Category: <%= link_to @blog.category.name, category_path(@blog.category), class: 'text-muted' %></p>
       </div>
       <%# Content %>
-      <p><%= @blog.content %></p>
+      <p><%= simple_format(@blog.content) %></p>
+      <%# Comments %>
+      <div>
+        <%= render 'shared/comments', blog: @blog%>
+      </div>
     </div>
   </main>
   <aside class='border-left col-md-3 d-none d-lg-block'>
@@ -24,7 +35,7 @@
         </div>
         <div class="card-body">
           <h3 class="card-title text-center"><%= @blog.author.username %></h3>
-          <p class="card-text text-muted text-center"><%= @blog.author.email %></p>
+          <p class="card-text text-muted text-center"><%= @blog.author.email if user_signed_in? %></p>
         </div>
       </div>
     </div>

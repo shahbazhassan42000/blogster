@@ -2,19 +2,32 @@ class CategoriesController < ApplicationController
   load_and_authorize_resource
   include ApplicationHelper
 
-  def create
-    @category = Category.new(category_params)
+  def new
     respond_to do |format|
-      if @category.save
-        message = 'Category is successfully created.'
+      format.html
+    end
+  end
+
+  def show
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def create
+    success = false
+    if @category.save
+      message = 'Category is successfully created.'
+      success = true
+    else
+      message = @category.errors.full_messages.join(', ')
+    end
+
+    respond_to do |format|
+      if success
         format.js { flash.now[:notice] = message }
-        format.json { render json: message, status: :created }
-        format.html { redirect_to company_url(@company), notice: message }
       else
-        message = @category.errors.full_messages.join(', ')
         format.js { flash.now[:alert] = message }
-        format.json { render json: message, status: :unprocessable_entity }
-        format.html { redirect_to company_url(@company), alert: message }
       end
     end
   end

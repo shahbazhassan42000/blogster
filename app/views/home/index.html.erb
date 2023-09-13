@@ -20,10 +20,10 @@
 <h1 class = 'display-3'>Companies</h1>
 <div class = 'row justify-content-center'>
   <% @companies.each do |company| %>
-    <div class="card mb-3 mr-3 shadow" style="max-width: 500px;">
+    <div class="card mb-3 mr-3 shadow" style="width: 500px;">
       <div class="row no-gutters">
-        <div class="col-md-4">
-          <%= image_tag resource_image_url(company, :logo, 'default_picture.png'), class: 'card-img' %>
+        <div class="col-md-4" style="width: 150px;">
+          <%= image_tag resource_image_url(company, :logo, 'default_picture.png'), class: 'w-100 h-100 object-fit-cover' %>
         </div>
         <div class="col-md-8">
           <div class="card-body">

@@ -26,7 +26,7 @@
                 <%= link_to edit_category_blog_path(blog.category, blog) do %>
                   <i class='fa fa-edit bg-warning text-white p-2 card m-0 mr-3' title='Edit'></i>
                 <% end %>
-                <%= link_to user_blog_path(blog.author, blog), method: :delete, data: { confirm: "Are you sure?" } do %>
+                <%= link_to category_blog_path(blog.category, blog), method: :delete, data: { confirm: "Are you sure?" } do %>
                   <i class='fa fa-trash bg-danger text-white p-2 card m-0' title='Delete'></i>
                 <% end %>
               </td>

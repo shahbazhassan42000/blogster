@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  include Tenantable
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 

@@ -20,8 +20,8 @@ gem 'turbolinks', '~> 5'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development do
-  gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
+  gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
@@ -32,5 +32,5 @@ gem 'devise', '~> 4.9'
 gem 'faker'
 gem 'guard-livereload'
 gem 'jquery-rails'
-gem 'mailcatcher', '~> 0.2.4'
+gem 'pagy', '~> 0.6.0'
 gem 'pry-rails'

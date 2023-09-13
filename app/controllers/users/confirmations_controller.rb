@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::ConfirmationsController < Devise::ConfirmationsController
+  include CompaniesHelper
   # GET /resource/confirmation/new
   # def new
   #   super
@@ -26,6 +27,6 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
   # The path used after confirmation.
   def after_confirmation_path_for(resource_name, resource)
-    email_confirmation_path
+    company_url(resource.company)
   end
 end

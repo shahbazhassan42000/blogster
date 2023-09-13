@@ -8,7 +8,6 @@ $(document).ready( function() {
     var company_name = company_name_field.val().trim();
     if(company_name !== ''){
       company_name = company_name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
-      $('#slug_field').val(company_name);
       slug_view.text(company_name);
       slug_box.show();
     }else{

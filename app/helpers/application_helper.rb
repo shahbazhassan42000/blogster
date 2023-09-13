@@ -1,8 +1,4 @@
 module ApplicationHelper
-  def company_url(company)
-    "http://#{company.slug}.#{APP_HOST}"
-  end
-
   def dashboard_url(user)
     "http://#{user.company.slug}.#{APP_HOST}/user/#{user.id}"
   end

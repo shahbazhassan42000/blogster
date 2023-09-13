@@ -94,6 +94,8 @@ Rails.application.configure do
   #   enable_starttls_auto: ENV['SMTP_ENABLE_STARTTLS_AUTO'].downcase.eql?('true') ? true : false
   # }
 
+  # config.action_dispatch.tld_length = 1
+
   # for subdomains to work
   config.hosts << 'lvh.me'
   config.hosts << /.+\.lvh\.me/

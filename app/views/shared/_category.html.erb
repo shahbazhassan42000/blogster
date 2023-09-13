@@ -2,14 +2,17 @@
   <input type = 'text' 
          name = 'category_name'
          value = '<%= category.name %>'
-         class = 'border-0 p-1 text-truncate'
+         class = 'border-0 p-1 text-truncate text-decoration'
          id = 'category_<%= category.id %>'
          title = '<%= category.name %>'
          data-category-name = '<%= category.name %>'
          disabled
   />
-  <% if current_user_is_owner? %>
-    <div class = 'ml-2'>
+  <div class = 'ml-2'>
+   <%= link_to category_path(category) do %>
+      <i class='fa fa-eye text-primary' title='View'></i>
+   <% end %>
+    <% if can? :manage, Category %>
       <i class = 'text-white bg-danger p-1 fa fa-close btn p-0 category_cancel_btn'
          title = 'Cancel'
          style = 'display: none;'
@@ -31,6 +34,6 @@
          title = 'Delete Category'
          data-confirm = "Are you sure?"
       ></i>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

@@ -1,0 +1,11 @@
+<section class='mb-5'>
+  <h2 class='text-primary'>Comments</h2>
+  <% if blog.comments.present? %>
+  <% else %>
+    <%= image_tag 'no_comments.gif', alt: 'No comments', class: 'rounded shadow' %>
+  <% end %>
+  <% if can? :create, Comment %>
+    <h3 class='text-dark mt-5'>Add Comment</h3>
+    <%= render 'shared/comment_form', blog: blog%>
+  <% end %>
+</section>

@@ -6,6 +6,7 @@ $(document).ready( function() {
 
   // CREATE
   $('#add_category_form').on('submit', function(e){
+    e.preventDefault();
     var form_data = new FormData(this);
     var category_name = form_data.get('name').trim();
     if(category_name !== ''){
@@ -13,8 +14,7 @@ $(document).ready( function() {
       ajax_request('/categories', 'POST', form_data);
     }else{
       set_category_error_message('Category name cannot be empty');
-    }
-    e.preventDefault();
+    }  
   });
 
     // UPDATE
@@ -45,6 +45,7 @@ $(document).ready( function() {
     update_btn.show();
   });
 
+  // Category update confirmation btn
   categories_list.on('click', '.category_confirm_btn', function(){
     var confirm_btn = $(this);
     var cancel_btn = confirm_btn.prev();

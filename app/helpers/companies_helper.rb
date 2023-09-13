@@ -1,5 +1,5 @@
 module CompaniesHelper
-  def current_user_is_owner?
-    current_user == @company.owner
+  def company_url(company)
+    "http://#{company.slug}.#{APP_HOST}"
   end
 end

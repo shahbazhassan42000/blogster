@@ -3,7 +3,11 @@ class ApplicationController < ActionController::Base
   before_action :company_not_found, if: -> { request.subdomain.present? }
 
   rescue_from CanCan::AccessDenied do
-    redirect_to root_url, alert: "You don't have access to this section."
+    redirect_to root_url, alert: "You don't have access."
+  end
+
+  rescue_from ActiveRecord::RecordNotFound do
+    render404
   end
 
   # rescue_from ActiveRecord::RecordNotFound do
@@ -23,10 +27,10 @@ class ApplicationController < ActionController::Base
   protected
 
   def set_company
-    @company = Company.find_by(slug: request.subdomain) if request.subdomain.present?
+    Current.company = Company.find_by(slug: request.subdomain) if request.subdomain.present?
   end
 
   def company_not_found
-    render404 unless @company.present?
+    render404 unless Current.company.present?
   end
 end

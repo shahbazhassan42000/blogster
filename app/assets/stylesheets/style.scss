@@ -18,6 +18,10 @@ $tertiary: #77dac7;
 navbar #logo_link:hover{
   text-decoration: none;
 }
+.text-decoration-underline {
+  text-decoration: underline;
+  cursor: pointer;
+}
 .object-fit-cover {
   object-fit: cover;
 }
@@ -70,6 +74,9 @@ html{
   -webkit-box-orient: vertical;
 }
 
+.border-none {
+  border: none !important;
+}
 
 .line-clamp-3{
   word-wrap: break-word;

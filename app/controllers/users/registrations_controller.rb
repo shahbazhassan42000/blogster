@@ -13,9 +13,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    params[:user][:company_attributes][:slug] = params[:user][:company_attributes][:name].gsub(/[^a-zA-Z0-9]/, '').downcase if params[:user][:role] == 'owner'
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -45,7 +46,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :role, :company_id, { company_attributes: %i[name slug] }])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :role, :company_id, { company_attributes: %i[name slug logo banner] }])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

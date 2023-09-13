@@ -12,6 +12,6 @@
 </nav>
 <section class='px-5'>
   <%# blogs list %>
-  <%= render "shared/blogs_table", blogs: current_user.blogs if current_user.author? %>
+  <%= render "shared/blogs_table", blogs: @blogs %>
 </section>
 </section>

@@ -1,0 +1,45 @@
+=> [[32m#<ActiveRecord::Reflection::BelongsToReflection:0x00007f4bd94db8a0[0m
+  @active_record[32m=[0m[1;34;4mUser[0m (call [31m[1;31m'[0m[31mUser.connection[1;31m'[0m[31m[0m to establish a connection),
+  @constructable[32m=[0m[1;36mtrue[0m,
+  @klass[32m=[0m[1;36mnil[0m,
+  @name[32m=[0m[33m:company[0m,
+  @options[32m=[0m{[33m:inverse_of[0m=>[33m:users[0m, [33m:autosave[0m=>[1;36mtrue[0m},
+  @plural_name[32m=[0m[31m[1;31m"[0m[31mcompanies[1;31m"[0m[31m[0m,
+  @scope[32m=[0m[1;36mnil[0m[32m>[0m,
+ [32m#<ActiveRecord::Reflection::HasManyReflection:0x00007f4bd94d7ae8[0m
+  @active_record[32m=[0m[1;34;4mUser[0m (call [31m[1;31m'[0m[31mUser.connection[1;31m'[0m[31m[0m to establish a connection),
+  @constructable[32m=[0m[1;36mtrue[0m,
+  @klass[32m=[0m[1;36mnil[0m,
+  @name[32m=[0m[33m:blogs[0m,
+  @options[32m=[0m{[33m:inverse_of[0m=>[33m:author[0m, [33m:foreign_key[0m=>[31m[1;31m"[0m[31mauthor_id[1;31m"[0m[31m[0m},
+  @plural_name[32m=[0m[31m[1;31m"[0m[31mblogs[1;31m"[0m[31m[0m,
+  @scope[32m=[0m[1;36mnil[0m[32m>[0m,
+ [32m#<ActiveRecord::Reflection::HasManyReflection:0x00007f4bd94d2458[0m
+  @active_record[32m=[0m[1;34;4mUser[0m (call [31m[1;31m'[0m[31mUser.connection[1;31m'[0m[31m[0m to establish a connection),
+  @constructable[32m=[0m[1;36mtrue[0m,
+  @klass[32m=[0m[1;36mnil[0m,
+  @name[32m=[0m[33m:categories[0m,
+  @options[32m=[0m{[33m:inverse_of[0m=>[33m:owner[0m, [33m:foreign_key[0m=>[31m[1;31m"[0m[31mowner_id[1;31m"[0m[31m[0m, [33m:dependent[0m=>[33m:destroy[0m},
+  @plural_name[32m=[0m[31m[1;31m"[0m[31mcategories[1;31m"[0m[31m[0m,
+  @scope[32m=[0m[1;36mnil[0m[32m>[0m,
+ [32m#<ActiveRecord::Reflection::HasOneReflection:0x00007f4bd94cb8b0[0m
+  @active_record[32m=[0m[1;34;4mUser[0m (call [31m[1;31m'[0m[31mUser.connection[1;31m'[0m[31m[0m to establish a connection),
+  @constructable[32m=[0m[1;36mtrue[0m,
+  @klass[32m=[0m[1;36mnil[0m,
+  @name[32m=[0m[33m:avatar_attachment[0m,
+  @options[32m=[0m{[33m:class_name[0m=>[31m[1;31m"[0m[31mActiveStorage::Attachment[1;31m"[0m[31m[0m, [33m:as[0m=>[33m:record[0m, [33m:inverse_of[0m=>[33m:record[0m, [33m:dependent[0m=>[33m:destroy[0m, [33m:strict_loading[0m=>[1;36mfalse[0m},
+  @plural_name[32m=[0m[31m[1;31m"[0m[31mavatar_attachments[1;31m"[0m[31m[0m,
+  @scope[32m=[0m[32m#<Proc:0x00007f4bd94cb978 /home/shahbaz/.rvm/gems/ruby-3.1.4/gems/activerecord-6.1.7.6/lib/active_record/associations/builder/association.rb:54>[0m,
+  @type[32m=[0m[31m[1;31m"[0m[31mrecord_type[1;31m"[0m[31m[0m[32m>[0m,
+ [32m#<ActiveRecord::Reflection::ThroughReflection:0x00007f4bd94c9128[0m
+  @delegate_reflection[32m=[0m
+   [32m#<ActiveRecord::Reflection::HasOneReflection:0x00007f4bd94c9290[0m
+    @active_record[32m=[0m[1;34;4mUser[0m (call [31m[1;31m'[0m[31mUser.connection[1;31m'[0m[31m[0m to establish a connection),
+    @constructable[32m=[0m[1;36mfalse[0m,
+    @klass[32m=[0m[1;36mnil[0m,
+    @name[32m=[0m[33m:avatar_blob[0m,
+    @options[32m=[0m{[33m:through[0m=>[33m:avatar_attachment[0m, [33m:class_name[0m=>[31m[1;31m"[0m[31mActiveStorage::Blob[1;31m"[0m[31m[0m, [33m:source[0m=>[33m:blob[0m, [33m:strict_loading[0m=>[1;36mfalse[0m},
+    @plural_name[32m=[0m[31m[1;31m"[0m[31mavatar_blobs[1;31m"[0m[31m[0m,
+    @scope[32m=[0m[1;36mnil[0m[32m>[0m,
+  @klass[32m=[0m[1;36mnil[0m,
+  @source_reflection_name[32m=[0m[33m:blob[0m[32m>[0m]

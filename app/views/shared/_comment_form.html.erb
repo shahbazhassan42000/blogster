@@ -1,0 +1,11 @@
+<%= form_with(model: [blog, blog.comments.build], url: category_blog_comments_path(blog.category, blog)) do |form| %>
+  <div class="form-group">
+    <%= form.text_area :content, class: "form-control", rows: 4 %>
+  </div>
+
+  <%= form.hidden_field company:current_user.company %>
+  
+  <div class="form-group">
+    <%= form.submit "Create Comment", class: "btn btn-primary" %>
+  </div>
+<% end %>
