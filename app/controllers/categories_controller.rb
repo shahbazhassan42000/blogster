@@ -9,6 +9,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @pagy, @blogs = pagy(@category.blogs)
     respond_to do |format|
       format.html
     end

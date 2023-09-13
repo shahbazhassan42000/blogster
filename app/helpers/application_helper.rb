@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def dashboard_url(user)
     "http://#{user.company.slug}.#{APP_HOST}/user/#{user.id}"
   end

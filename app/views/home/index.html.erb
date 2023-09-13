@@ -17,27 +17,31 @@
     </div>
   </section>
 
-<h1 class = 'display-3'>Companies</h1>
+<h1 class = 'display-4 my-5'>Companies</h1>
 <div class = 'row justify-content-center'>
   <% @companies.each do |company| %>
-    <div class="card mb-3 mr-3 shadow" style="width: 500px;">
+    <div class="card mb-3 mr-3 shadow-sm" style="width: 500px; height: 180px;">
       <div class="row no-gutters">
-        <div class="col-md-4" style="width: 150px;">
-          <%= image_tag resource_image_url(company, :logo, 'default_picture.png'), class: 'w-100 h-100 object-fit-cover' %>
+        <div class="col-md-4" style="height: 178px; width: 350px">
+          <%= image_tag resource_image_url(company, :logo, 'default_picture.png'), class: 'rounded-left w-100 h-100 object-fit-cover' %>
         </div>
         <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title"><%= company.name %></h5>
-            <p class="card-text">
-              <small class="text-muted">
-                Last updated <%= time_ago_in_words(company.updated_at) %> ago
-              </small>
-            </p>
-            <%= link_to "View",  company_url(company), class: 'btn btn-primary'  %>
-            
+          <div class="card-body " style="height: 180px;">
+            <div class='d-flex flex-column justify-content-between h-100'>
+              <div>
+                <h5 class="card-title"><%= company.name %></h5>
+                <p class="card-text">
+                  <small class="text-muted">
+                    Last updated <%= time_ago_in_words(company.updated_at) %> ago
+                  </small>
+                </p>
+              </div>
+              <%= link_to "View",  company_url(company), class: 'btn btn-block btn-primary', style: 'width: fit-content;' %>
+            </div>
           </div>
         </div>
       </div>
     </div>
   <% end %>
 </div>
+<%= render "shared/pagy_nav" %>

@@ -7,13 +7,14 @@
   </nav>
   <section class='col-md-12'>
     <div class='row justify-content-center'>
-      <% if @category.blogs.present? %>
-        <% @category.blogs.each do |blog| %>
+      <% if @blogs.present? %>
+        <% @blogs.each do |blog| %>
           <%= render "shared/blog_card", blog: blog%>
         <% end %>
       <% else %>
         <%= image_tag 'no_record.gif', alt: 'No blogs found' %>
       <% end %>
-    </div>    
+    </div>
+    <%= render "shared/pagy_nav" if @blogs.size > 20 %>
   </section>
 </main>

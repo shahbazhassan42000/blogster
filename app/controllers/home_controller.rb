@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @companies = Company.where(active: true)
+    @pagy, @companies = pagy(Company.active, items: 6)
   end
 end

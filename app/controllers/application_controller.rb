@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
+  
   before_action :set_company, if: -> { request.subdomain.present? }
   before_action :company_not_found, if: -> { request.subdomain.present? }
 

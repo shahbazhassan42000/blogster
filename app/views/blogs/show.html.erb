@@ -1,6 +1,5 @@
-
 <nav aria-label="breadcrumb" class="my-2">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb pl-0 bg-transparent">
       <li class="breadcrumb-item"><%= link_to 'Categories', root_path %></li>
       <li class="breadcrumb-item active" aria-current="page"><%= link_to @blog.category.name, category_path(@blog.category) %></li>
       <li class="breadcrumb-item active" aria-current="page"><%= @blog.title %></li>
