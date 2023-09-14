@@ -1,0 +1,12 @@
+<% if flash[:alert].present? %>
+  $("#contributor_error_message").text('<%= flash[:alert] %>');
+  $("#contributor_error").show();
+<% else %>
+  $("#contributor_notice_message").text('<%= flash[:notice] %>');
+  $("#contributor_notice").show();
+  var submit_btn= $("#submit_button");
+  console.log(submit_btn)
+  submit_btn.addClass("not-allowed disabled");
+  submit_btn.text("Requested for Contribution");
+  
+<% end %>

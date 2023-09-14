@@ -10,25 +10,9 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  def create
-    # binding.pry
-    # request.domain = "#{User.find_by(email: params[:user][:email])}.#{ENV['HOST']}"
-    super
-    # binding.pry
-    # do |resource|
-    #   if resource.persisted?
-    #     domain = "#{resource.company.slug}.#{ENV['HOST']}"
-    #     cookies['_blogster_session'] = {
-    #       value: params[:authenticity_token],
-    #       domain: domain,
-    #       expires: Devise.timeout_in,
-    #       secure: request.ssl?,
-    #       httponly: true,
-    #       hostonly: true
-    #     }
-    #   end
-    # end
-  end
+  # def create
+  #   super
+  # end
 
   # DELETE /resource/sign_out
   # def destroy

@@ -1,16 +1,16 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
-  
+
   before_action :set_company, if: -> { request.subdomain.present? }
   before_action :company_not_found, if: -> { request.subdomain.present? }
 
-  rescue_from CanCan::AccessDenied do
-    redirect_to root_url, alert: "You don't have access."
-  end
+  # rescue_from CanCan::AccessDenied do
+  #   redirect_to root_url, alert: "You don't have access."
+  # end
 
-  rescue_from ActiveRecord::RecordNotFound do
-    render404
-  end
+  # rescue_from ActiveRecord::RecordNotFound do
+  #   render404
+  # end
 
   # rescue_from ActiveRecord::RecordNotFound do
   #   respond_to do |format|

@@ -56,11 +56,14 @@ ActiveRecord::Schema.define(version: 2023_09_10_085625) do
   end
 
   create_table "blogs_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "company_id", null: false
     t.bigint "blog_id", null: false
     t.bigint "user_id", null: false
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["blog_id"], name: "index_blogs_users_on_blog_id"
+    t.index ["company_id"], name: "index_blogs_users_on_company_id"
     t.index ["user_id"], name: "index_blogs_users_on_user_id"
   end
 
@@ -78,10 +81,12 @@ ActiveRecord::Schema.define(version: 2023_09_10_085625) do
     t.text "content"
     t.bigint "commentable_id"
     t.string "commentable_type"
+    t.bigint "commentor_id", null: false
     t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["commentor_id"], name: "index_comments_on_commentor_id"
     t.index ["company_id"], name: "index_comments_on_company_id"
   end
 
@@ -126,10 +131,12 @@ ActiveRecord::Schema.define(version: 2023_09_10_085625) do
   add_foreign_key "blogs", "companies"
   add_foreign_key "blogs", "users", column: "author_id"
   add_foreign_key "blogs_users", "blogs"
+  add_foreign_key "blogs_users", "companies"
   add_foreign_key "blogs_users", "users"
   add_foreign_key "categories", "companies"
   add_foreign_key "categories", "users", column: "owner_id"
   add_foreign_key "comments", "companies"
+  add_foreign_key "comments", "users", column: "commentor_id"
   add_foreign_key "companies", "users", column: "owner_id"
   add_foreign_key "users", "companies"
 end

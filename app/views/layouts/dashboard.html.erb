@@ -19,7 +19,8 @@
           <div class='d-flex flex-column'>
             <%= image_tag 'danding_cat.gif', width: 50, class: 'mx-auto' %>
             <%= link_to 'Dashboard', dashboard_url(current_user), class: 'h5 px-2 py-2 border rounded bg-primary text-white shadow', style: "text-decoration: none;" %>
-            <%= link_to 'Profile','#', class: 'h5 px-2 py-2 border rounded bg-primary text-white shadow', style: "text-decoration: none;" %>
+            <%= link_to 'Contributors',"#{user_path(current_user)}/contributors", class: 'h5 px-2 py-2 border rounded bg-primary text-white shadow', style: "text-decoration: none;" %>
+            <%= link_to 'Profile',"#{user_path(current_user)}/profile", class: 'h5 px-2 py-2 border rounded bg-primary text-white shadow', style: "text-decoration: none;" %>
           </div>
           <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { 
                   turbo_method: :delete,
@@ -44,6 +45,17 @@
             </button>
           </p>
         <% end %>
+        <nav class='border-top border-bottom bg-secondary d-flex justify-content-between px-5 py-3'>
+          <div>
+          </div>
+          <div>
+            <% if can? :create, Blog %>
+              <%= link_to new_user_blog_path(current_user), class: 'btn btn-primary' do %>
+                <i class='fa fa-add mr-2'></i>Create Blog
+              <% end %>
+            <% end %>
+          </div>
+        </nav>
         <%= yield %>
       </main>
     </section>

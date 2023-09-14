@@ -51,7 +51,7 @@
             <% end %>
           <% else %>
             <%= f.hidden_field :role, value: :author %>
-            <%= f.hidden_field :company_id, value: @company.id%>
+            <%= f.hidden_field :company_id, value: Current.company.id%>
 
           <% end %>
 

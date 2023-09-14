@@ -5,7 +5,8 @@ class Blog < ApplicationRecord
   belongs_to :category, inverse_of: :blogs
   belongs_to :author, class_name: 'User', foreign_key: 'author_id'
   has_many :comments, as: :commentable
-  has_and_belongs_to_many :contributors, class_name: 'User', join_table: 'blogs_users'
+  has_many :blogs_users
+  has_many :contributors, through: :blogs_users, source: :user
   has_one_attached :featured_image
 
   enum status: %i[published archived]

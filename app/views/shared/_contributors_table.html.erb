@@ -1,0 +1,43 @@
+<section class='my-5'>
+  <h1>Contributors Request</h1>
+  <% if contributors.present? %>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Requested at</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% contributors.each do |contributor| %>
+            <tr></tr>
+              <td><%= contributor.user.username %></td>
+              <td><%= contributor.user.email %></td>
+              <td><%= contributor.created_at.strftime("%d %b %Y") %></td>
+              <td class=<%= contributor.status %>><%= contributor.status %></td>
+              <td>
+                <div class='d-flex justify-content-center'>
+                  <% if contributor.pending? %>
+                    <%= link_to category_blog_contributor_path(contributor.blog.category.id, contributor.blog.id, contributor.id, status: :approved), method: :put, data: { confirm: "Are you sure?" } do %>
+                      <i class='fa fa-check bg-success text-white p-2 card m-0 mr-3' title='Approve'></i>
+                    <% end %>
+                    <%= link_to category_blog_contributor_path(contributor.blog.category.id, contributor.blog.id, contributor.id, status: :rejected), method: :put, data: { confirm: "Are you sure?" } do %>
+                      <i class='fa fa-close bg-danger text-white p-2 card m-0' title='Reject'></i>
+                    <% end %>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <% else %>
+    <%= image_tag 'no_record.gif', alt: 'No Blog present' %>
+  <% end %>
+</section>

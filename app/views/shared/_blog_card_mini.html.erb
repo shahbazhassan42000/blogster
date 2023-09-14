@@ -6,7 +6,7 @@
     <div>
       <%= render "shared/author_minimal", author: blog.author %>
       <h4 class="card-title mb-1 text-truncate"><%= blog.title %></h4>
-      <p class='mb-2'><%= link_to blog.category.name, category_path(blog.category.name), class: 'text-muted' %></p>
+      <p class='mb-2'><%= link_to blog.category.name, category_path(blog.category), class: 'text-muted' %></p>
       <p class="card-text text-dark line-clamp-2 mb-1" style="height: 50px;"><%= blog.excerpt %></p>
     </div>
     <div class="d-flex justify-content-between align-items-center">

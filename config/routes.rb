@@ -6,11 +6,13 @@ Rails.application.routes.draw do
     get '/', to: 'companies#show'
     resources :categories do
       resources :blogs, except: %i[create new] do
-        resources :comments
+        resources :contributors, only: %i[create destroy update]
       end
     end
+    resources :comments
     resources :user, except: %i[create destroy new] do
-      resources :blogs, except: %i[index show edit update destroy]
+      resources :blogs, only: %i[create new]
+      get 'contributors', to: 'user#contributors_show'
     end
     resources :companies, except: [:show]
   end

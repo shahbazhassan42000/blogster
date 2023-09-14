@@ -4,6 +4,7 @@ class CreateComments < ActiveRecord::Migration[6.1]
       t.text :content
       t.bigint :commentable_id
       t.string :commentable_type
+      t.references :commentor, null: false, foreign_key: { to_table: :users }
       t.references :company, null: false, foreign_key: true
 
       t.timestamps
