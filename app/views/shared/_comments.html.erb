@@ -1,9 +1,26 @@
-<section class='mb-5'>
+<section class='mb-5' style="max-height: 800px; overflow-y: auto;" >
   <h2 class='text-primary'>Comments</h2>
-  <% if resource.comments.present? %>
-  <% else %>
-    <%= image_tag 'no_comments.gif', alt: 'No comments', class: 'rounded shadow' %>
-  <% end %>
+  <p id='comments_error' class = 'alert alert-danger alert-dismissible fade show' style="display: none;" role = 'alert'>
+    <span id='comments_error_message'><%= alert %></span>
+    <button type="button" class="close" id='comments_error_close_btn'>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </p>
+  <p id='comments_notice' class = 'alert alert-warning alert-dismissible fade show' style="display: none;" role = 'alert'>
+    <span id='comments_notice_message'><%= alert %></span>
+    <button type="button" class="close" id='comments_notice_close_btn'>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </p>
+  <div class="mx-3" id="comments_list">
+    <% if resource.comments.present? %>
+        <% resource.comments.each do |comment| %>
+          <%= render 'shared/comment', comment: comment %>
+        <% end %>
+    <% else %>
+      <%= image_tag 'no_comments.gif', alt: 'No comments', class: 'rounded shadow', id: 'no_comments_img' %>
+    <% end %>
+  </div>
   <% if can? :create, Comment %>
     <div class="mt-4">
       <button class='btn btn-primary' id="add_comment_btn">Add Comment</button>
@@ -27,6 +44,7 @@
             </div>
             <%= form.hidden_field :company_id, value: Current.company.id %>
             <%= form.hidden_field :commentable_id, value: resource.id %>
+            <%= form.hidden_field :commentor_id, value: current_user.id %>
             <%= form.hidden_field :commentable_type, value: resource.class.name %>
             <div class="d-flex justify-content-end">
               <button class="btn btn-secondary mr-2 shadow" id="modal_cancel_btn">Cancel</button>

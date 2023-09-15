@@ -11,7 +11,7 @@ class UserController < ApplicationController
 
   # GET /users/1
   def show
-    @pagy, @blogs = pagy(current_user.owner? ? Blog.all : current_user.blogs)
+    @pagy, @blogs = pagy(current_user.owner? ? Blog.all : Blog.where(author_id: current_user.id).or(Blog.where(id: BlogsUser.where(user_id: current_user.id).approved.pluck(:blog_id))))
     respond_to do |format|
       format.html
     end
@@ -19,7 +19,8 @@ class UserController < ApplicationController
 
   #GET /users/1/contributors
   def contributors_show
-    @contributors = current_user.owner? ? BlogsUser.all : BlogsUser.where(blog: current_user.blogs)
+    @pagy, @contributors = pagy(current_user.owner? ? BlogsUser.all : BlogsUser.where(blog_id: current_user.blogs.pluck(:id)))
+
     respond_to do |format|
       format.html { render :contributors_show }
     end

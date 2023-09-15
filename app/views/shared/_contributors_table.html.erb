@@ -7,6 +7,7 @@
           <tr>
             <th>Username</th>
             <th>Email</th>
+            <th>Requested Blog</th>
             <th>Requested at</th>
             <th>Status</th>
             <th>Actions</th>
@@ -17,6 +18,14 @@
             <tr></tr>
               <td><%= contributor.user.username %></td>
               <td><%= contributor.user.email %></td>
+              <td>
+                <div class="text-truncate d-flex justify-content-between">
+                  <%= contributor.blog.title %>
+                  <%= link_to category_blog_path(contributor.blog.category, contributor.blog) do %>
+                    <i class='fa fa-eye bg-warning p-1 card text-white m-0' title='View'></i>
+                  <% end %>
+                </div>
+              </td>
               <td><%= contributor.created_at.strftime("%d %b %Y") %></td>
               <td class=<%= contributor.status %>><%= contributor.status %></td>
               <td>

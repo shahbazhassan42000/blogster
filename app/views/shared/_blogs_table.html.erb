@@ -6,6 +6,7 @@
         <thead>
           <tr>
             <th>Title</th>
+            <th>Author</th>
             <th>Created at</th>
             <th>Category</th>
             <th>Status</th>
@@ -16,6 +17,7 @@
           <% blogs.each do |blog| %>
             <tr>
               <td><%= blog.title %></td>
+              <td><%= blog.author.username %></td>
               <td><%= blog.created_at.strftime("%B %d, %Y") %></td>
               <td><%= blog.category.name %></td>
               <td><%= blog.status %></td>
@@ -23,11 +25,15 @@
                 <%= link_to category_blog_path(blog.category, blog) do %>
                   <i class='fa fa-eye bg-success text-white p-2 card m-0 mr-3' title='View'></i>
                 <% end %>
-                <%= link_to edit_category_blog_path(blog.category, blog) do %>
-                  <i class='fa fa-edit bg-warning text-white p-2 card m-0 mr-3' title='Edit'></i>
+                <% if can? :update, blog %>
+                  <%= link_to edit_category_blog_path(blog.category, blog) do %>
+                    <i class='fa fa-edit bg-warning text-white p-2 card m-0 mr-3' title='Edit'></i>
+                  <% end %>
                 <% end %>
-                <%= link_to category_blog_path(blog.category, blog), method: :delete, data: { confirm: "Are you sure?" } do %>
-                  <i class='fa fa-trash bg-danger text-white p-2 card m-0' title='Delete'></i>
+                <% if can? :destroy, blog %>
+                  <%= link_to category_blog_path(blog.category, blog), method: :delete, data: { confirm: "Are you sure?" } do %>
+                    <i class='fa fa-trash bg-danger text-white p-2 card m-0' title='Delete'></i>
+                  <% end %>
                 <% end %>
               </td>
             </tr>

@@ -69,7 +69,7 @@ $(document).ready( function() {
   });
 
   // DELETE
-  $('#categories_list').on('click', '.fa-trash', function(){
+  categories_list.on('click', '.fa-trash', function(){
     var category_id = $(this).data('category-id');
     if(confirm($(this).data('confirm'))) ajax_request(`/categories/${category_id}`, 'DELETE');
   });

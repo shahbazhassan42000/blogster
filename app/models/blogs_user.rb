@@ -1,5 +1,6 @@
 class BlogsUser < ApplicationRecord
-  default_scope { where(company_id: Current.company.id) }
+  # , status: :approved
+  default_scope { where(company_id: Current.company.id).order(status: :asc) }
 
   belongs_to :blog
   belongs_to :user

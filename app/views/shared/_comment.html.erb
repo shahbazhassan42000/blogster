@@ -1,0 +1,45 @@
+<div class="d-flex mb-3" id="comment_<%= comment.id %>">
+  <%# Commentor Avatar %>
+  <div class="mr-2">
+    <div>
+      <%= image_tag resource_image_url(comment.commentor, :avatar, 'default_profile_picture.png'),class: 'rounded-circle shadow-sm', width: 45, alt: comment.commentor.username[0].capitalize %>
+    </div>
+  </div>
+  <%# Content %>
+  <div class='rounded border bg-light d-flex flex-column p-2 w-100'>
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <div class="d-flex align-items-center">
+        <h4 class="m-0 mr-3"><%= comment.commentor.username %></h4>
+        <small class="text-muted"><%= comment.updated_at.strftime("%a, %e %b %Y, %l:%M %p") %></small>
+      </div>
+      <%# Edit Delete buttons %>
+      <div>
+        <% if can? :update, comment %>
+         <i class = 'text-white bg-danger p-1 fa fa-close btn p-0 comment_cancel_btn'
+            title = 'Cancel'
+            style = 'display: none;'
+            data-comment-id = '<%= comment.id %>'
+            data-comment-content = "<%= simple_format(comment.content) %>"
+          ></i>
+          <i class = 'text-white bg-success p-1 fa fa-check btn p-0 comment_confirm_btn' 
+            title = 'Confirm'
+            style = 'display: none;'
+            data-comment-id = '<%= comment.id %>'
+          ></i>
+          <i class = 'text-warning fa fa-edit btn p-0 comment_edit_btn' 
+            data-comment-id = '<%= comment.id %>'
+            title = 'Edit Comment'
+          ></i>
+        <% end %>
+        <% if can? :destroy, comment %>
+          <i class = 'text-danger fa fa-trash btn p-0 comment_delete_btn' 
+            data-comment-id = '<%= comment.id %>' 
+            title = 'Delete Comment'
+            data-confirm = "Are you sure?"
+          ></i>
+        <% end %>
+      </div>
+    </div>
+    <div id="<%= comment.id %>" style="max-height: 300px; overflow-y: auto;"><%= simple_format(comment.content) %></div>
+  </div>
+</div>

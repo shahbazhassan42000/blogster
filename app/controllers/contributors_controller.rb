@@ -36,6 +36,6 @@ class ContributorsController < ApplicationController
   private
 
   def contributors_params
-    params.permit(:blog_id, :user_id, :company_id)
+    params.permit(:blog_id, :status,:user_id, :company_id)
   end
 end

@@ -1,4 +1,3 @@
-<% binding.pry %>
 var category_name_field = $('#category_<%= @category.id %>');
 <% if flash[:notice] %>
   category_name_field.val('<%= @category.name %>');

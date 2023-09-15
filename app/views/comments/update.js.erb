@@ -1,0 +1,9 @@
+var comment_message_field = $('#<%= @comment.id %>');
+<% if flash[:notice] %>
+  $("#comments_notice_message").text('<%= flash[:notice] %>');
+  $("#comments_notice").show();
+<% else %>
+  comment_message_field.html($.parseHTML($('#comment_<%= @comment.id %> .comment_cancel_btn').data('comment-content')));
+  $("#comments_error_message").text('<%= flash[:alert] %>');
+  $("#comments_error").show();
+<% end %>

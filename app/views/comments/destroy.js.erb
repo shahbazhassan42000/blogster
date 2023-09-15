@@ -1,0 +1,8 @@
+<% if @comment.destroyed? %>
+  $('#comments_list').find("#comment_<%= @comment.id %>").remove();
+  $("#comments_notice_message").text('<%= flash[:notice] %>');
+  $("#comments_notice").show();
+<% else %>
+  $("#comments_error_message").text('<%= flash[:alert] %>');
+  $("#comments_error").show();
+<% end %>

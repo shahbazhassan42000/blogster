@@ -14,7 +14,6 @@ class BlogsController < ApplicationController
     @blog.author = current_user
 
     if @blog.save
-      UserMailer.with(email_list: blog_users_email_list, blog: @blog, action: 'published').blog_email.deliver_now
       flash[:notice] = 'Blog successfully created!'
       redirect_to user_path(current_user)
     else
@@ -38,7 +37,6 @@ class BlogsController < ApplicationController
 
   def update
     if @blog.update(blog_params)
-      UserMailer.with(email_list: blog_users_email_list, blog: @blog, action: 'updated').blog_email.deliver_now
       redirect_to dashboard_url(current_user), notice: 'Blog updated successfully!'
     else
       redirect_to dashboard_url(current_user), alert: 'Error while updating blog, please try again later.'

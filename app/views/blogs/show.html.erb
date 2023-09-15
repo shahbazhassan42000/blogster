@@ -29,40 +29,42 @@
       </div>
     </div>
   </main>
-  <aside class='border-left col-md-3 d-none d-lg-flex sticky-top flex-column' style="top: 8rem;">
-    <%# Author card %>
-    <div class='d-flex flex-column align-items-center' >
-      <div class="card pt-3 mx-3 shadow">
-        <div class='card-img-top px-5'>
-          <%= image_tag resource_image_url(@blog.author, :avatar, 'default_profile_picture.png'), class: 'w-100 h-100 object-fit-cover' %>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title text-center"><%= @blog.author.username %></h3>
-          <p class="card-text text-muted text-center"><%= @blog.author.email if user_signed_in? %></p>
+  <aside class='border-left col-md-3 d-none d-lg-flex flex-column' >
+    <div class="sticky-top" style="top: 8rem;">
+      <%# Author card %>
+      <div class='d-flex flex-column align-items-center' >
+        <div class="card pt-3 mx-3 shadow">
+          <div class='card-img-top px-5'>
+            <%= image_tag resource_image_url(@blog.author, :avatar, 'default_profile_picture.png'), class: 'w-100 h-100 object-fit-cover' %>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title text-center"><%= @blog.author.username %></h3>
+            <p class="card-text text-muted text-center"><%= @blog.author.email if user_signed_in? %></p>
+          </div>
         </div>
       </div>
+      <% if can_request_contribution? %>
+        <div class="mx-3 my-4">
+          <%= form_with(url: category_blog_contributors_path(@blog.category, @blog), remote: true, id: 'contributor_form') do |form| %>
+            <%= form.hidden_field :blog_id, value: @blog.id %>
+            <%= form.hidden_field :user_id, value: current_user.id %>
+            <%= form.hidden_field :company_id, value: Current.company.id %>
+            <button class="btn btn-primary shadow <%= 'not-allowed disabled' if is_requested? %>" type="submit" id="submit_button" ><%= is_requested? ? 'Requested for Contribution' : 'Request for Contribution' %></button>
+          <% end %>
+          <p id='contributor_error' class = 'alert alert-danger alert-dismissible fade show mt-3' style="display: none;" role = 'alert'>
+            <span id='contributor_error_message'><%= alert %></span>
+            <button type="button" class="close" id='contributor_close_btn'>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </p>
+          <p id='contributor_notice' class = 'alert alert-warning alert-dismissible fade show mt-3' style="display: none;" role = 'alert'>
+            <span id='contributor_notice_message'><%= alert %></span>
+            <button type="button" class="close" id='contributor_notice_close_btn'>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </p>
+        </div>
+      <% end %>
     </div>
-    <% if can_request_contribution? %>
-      <div class="mx-3 my-4">
-        <%= form_with(url: category_blog_contributors_path(@blog.category, @blog), remote: true, id: 'contributor_form') do |form| %>
-          <%= form.hidden_field :blog_id, value: @blog.id %>
-          <%= form.hidden_field :user_id, value: current_user.id %>
-          <%= form.hidden_field :company_id, value: Current.company.id %>
-          <button class="btn btn-primary shadow <%= 'not-allowed disabled' if is_requested? %>" type="submit" id="submit_button" ><%= is_requested? ? 'Requested for Contribution' : 'Request for Contribution' %></button>
-        <% end %>
-        <p id='contributor_error' class = 'alert alert-danger alert-dismissible fade show mt-3' style="display: none;" role = 'alert'>
-          <span id='contributor_error_message'><%= alert %></span>
-          <button type="button" class="close" id='contributor_close_btn'>
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </p>
-        <p id='contributor_notice' class = 'alert alert-warning alert-dismissible fade show mt-3' style="display: none;" role = 'alert'>
-          <span id='contributor_notice_message'><%= alert %></span>
-          <button type="button" class="close" id='contributor_notice_close_btn'>
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </p>
-      </div>
-    <% end %>
   </aside>
 </section>
