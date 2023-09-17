@@ -8,6 +8,7 @@
             <th>Username</th>
             <th>Email</th>
             <th>Requested Blog</th>
+            <th>Author</th>
             <th>Requested at</th>
             <th>Status</th>
             <th>Actions</th>
@@ -26,6 +27,7 @@
                   <% end %>
                 </div>
               </td>
+              <td><%= contributor.blog.author.username %></td>
               <td><%= contributor.created_at.strftime("%d %b %Y") %></td>
               <td class=<%= contributor.status %>><%= contributor.status %></td>
               <td>

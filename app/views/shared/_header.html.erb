@@ -27,6 +27,14 @@
                   <% end %>
               </li>
             <% end %>
+            <%# notification icon %>
+            <li class="nav-item mr-3">
+              <%= link_to "#{user_path(current_user)}/contributors", class: "d-flex align-items-center position-relative" do %>
+                <i class="fa fa-bell text-warning h3 pt-2"></i>
+                <span class="badge rounded-circle text-white bg-primary position-absolute" style="top: 1px; right: -5px;"><%= pending_requests_count %></span>
+              <% end %>
+            </li>
+            <%# User Greeting %>
             <li class='nav-item mr-3'>
                 <h3 class='m-0 text-dark'>Hi, <%= current_user.username %></h3>
             </li>
