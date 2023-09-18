@@ -1,0 +1,68 @@
+<%= javascript_include_tag 'report', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<section class='d-flex flex-column'>
+  <section class='px-5'>
+    <section class='my-5'>
+      <h1>Blogs Report</h1>
+      <% if @report.blogs.any? %>
+        <div class="table-responsive">
+          <div class="d-flex">
+            <!-- Filters -->
+            <div class="filters-container mr-3" style="margin-top: 2.8rem; width: 321px">
+              <div class='card p-3 shadow'>
+                <h4 class='text-dark mb-3'>Filters</h4>
+                <div class="filters form-group">
+                  <input type="text" placeholder="Title" class="title-filter form-control mb-2">
+                  <input type="text" placeholder="Author" class="author-filter form-control">
+                </div>
+                <button class="btn btn-primary mx-auto" id="filters_clear_btn" style="width: fit-content;">Clear filters</button>
+              </div>
+              <div class="mt-5">
+                <%= image_tag 'report.gif', alt: 'reports', class:'w-100 object-fit-cover rounded shadow' %>
+              </div>
+            </div>
+            <!-- Report table -->
+          <table id="report_table" class="table table-bordered shadow rounded">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Comments</th>
+                <th>Author</th>
+                <th>Status</th>
+                <th>Contributors count</th>
+                <th>Contributors</th>
+                <th>Created at</th>
+                <th>Updated at</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @report.blogs.each do |blog| %>
+                <tr>
+                  <td class="text-truncate"><%= blog[:title] %></td>
+                  <td class="text-truncate"><%= blog[:category] %></td>
+                  <td class="text-truncate"><%= blog[:comments_count] %></td>
+                  <td class="text-truncate"><%= blog[:author] %></td>
+                  <td class="text-truncate"><%= blog[:status] %></td>
+                  <td class="text-truncate"><%= blog[:contributors_count] %></td>
+                  <td>
+                    <div class="d-flex flex-column">
+                      <%  blog[:contributors].each do |contributor| %>
+                        <span class="text-truncate"><%= contributor %></span>
+                      <% end %>
+                    </div>
+                  </td>
+                  <td class="text-truncate"><%= blog[:created_at].strftime("%d %b %Y") %></td>
+                  <td class="text-truncate"><%= blog[:updated_at].strftime("%d %b %Y") %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <% else %>
+        <%= image_tag 'no_record.gif', alt: 'No report present' %>
+      <% end %>
+    </section>
+  </section>
+</section>

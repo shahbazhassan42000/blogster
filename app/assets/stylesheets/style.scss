@@ -2,6 +2,8 @@ $primary: #00c8aa;
 $secondary: #576e7f;
 $tertiary: #77dac7;
 @import 'bootstrap';
+@import 'datatables.net-bs4/css/dataTables.bootstrap4.css';
+
 
 .custom-wrapper {
   padding-left: 6rem;

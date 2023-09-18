@@ -1,8 +1,10 @@
+<%= javascript_include_tag 'contributors', media: 'all', 'data-turbolinks-track': 'reload' %>
+
 <section class='my-5'>
   <h1>Contributors Request</h1>
   <% if contributors.present? %>
     <div class="table-responsive">
-      <table class="table table-bordered">
+      <table id="contributors_table" class="table table-bordered shadow rounded">
         <thead>
           <tr>
             <th>Username</th>
@@ -16,7 +18,7 @@
         </thead>
         <tbody>
           <% contributors.each do |contributor| %>
-            <tr></tr>
+            <tr>
               <td><%= contributor.user.username %></td>
               <td><%= contributor.user.email %></td>
               <td>
@@ -30,8 +32,8 @@
               <td><%= contributor.blog.author.username %></td>
               <td><%= contributor.created_at.strftime("%d %b %Y") %></td>
               <td class=<%= contributor.status %>><%= contributor.status %></td>
-              <td>
-                <div class='d-flex justify-content-center'>
+              <td class="p-0">
+                <div class='d-flex justify-content-center pt-2'>
                   <% if contributor.pending? %>
                     <%= link_to category_blog_contributor_path(contributor.blog.category.id, contributor.blog.id, contributor.id, status: :approved), method: :put, data: { confirm: "Are you sure?" } do %>
                       <i class='fa fa-check bg-success text-white p-2 card m-0 mr-3' title='Approve'></i>

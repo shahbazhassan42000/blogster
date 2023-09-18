@@ -21,6 +21,7 @@
             <%= link_to 'Dashboard', dashboard_url(current_user), class: 'h5 px-2 py-2 border rounded bg-primary text-white shadow', style: "text-decoration: none;" %>
             <%= link_to 'Contributors',"#{user_path(current_user)}/contributors", class: 'h5 px-2 py-2 border rounded bg-primary text-white shadow', style: "text-decoration: none;" %>
             <%= link_to 'Profile',"#{user_path(current_user)}/profile", class: 'h5 px-2 py-2 border rounded bg-primary text-white shadow', style: "text-decoration: none;" %>
+            <%= link_to 'Report',"#{user_path(current_user)}/report", class: 'h5 px-2 py-2 border rounded bg-primary text-white shadow', style: "text-decoration: none;" if current_user.owner? %>
           </div>
           <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { 
                   turbo_method: :delete,

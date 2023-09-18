@@ -1,8 +1,9 @@
+<%= javascript_include_tag 'dashboard', media: 'all', 'data-turbolinks-track': 'reload' %>
 <section class='my-5'>
-  <h1>Blogs</h1>
+  <h1><%= 'My ' if current_user.author? %>Blogs</h1>
   <% if blogs.present? %>
     <div class="table-responsive">
-      <table class="table table-bordered">
+      <table id="blogs_table" class="table table-bordered shadow rounded">
         <thead>
           <tr>
             <th>Title</th>

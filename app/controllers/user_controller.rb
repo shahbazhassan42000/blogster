@@ -18,11 +18,26 @@ class UserController < ApplicationController
   end
 
   #GET /users/1/contributors
-  def contributors_show
+  def contributors
     @pagy, @contributors = pagy(current_user.owner? ? BlogsUser.all : BlogsUser.where(blog_id: current_user.blogs.pluck(:id)))
 
     respond_to do |format|
-      format.html { render :contributors_show }
+      format.html
+    end
+  end
+
+  # GET /users/1/profile
+  def profile
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  # GET /users/1/report
+  def report
+    @report = Report.new(Blog.all)
+    respond_to do |format|
+      format.html
     end
   end
 end

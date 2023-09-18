@@ -9,6 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import 'jquery'
 import '../js/bootstrap_js_files.js'
+import 'datatables.net-bs4'
 import "@fortawesome/fontawesome-free/js/all"
 Rails.start()
 Turbolinks.start()

@@ -5,7 +5,7 @@ class Blog < ApplicationRecord
   belongs_to :category, inverse_of: :blogs
   belongs_to :author, class_name: 'User', foreign_key: 'author_id'
   has_many :comments, as: :commentable
-  has_many :blogs_users, dependent: :destroy
+  has_many :blogs_users, -> { where(status: :approved) }, dependent: :destroy
   has_many :contributors, through: :blogs_users, source: :user, dependent: :destroy
   has_one_attached :featured_image
 

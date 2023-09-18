@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     resources :comments
     resources :user, except: %i[create destroy new] do
       resources :blogs, only: %i[create new]
-      get 'contributors', to: 'user#contributors_show'
+      get 'contributors', to: 'user#contributors'
+      get 'profile', to: 'user#profile'
+      get 'report', to: 'user#report'
     end
     resources :companies, except: [:show]
   end
