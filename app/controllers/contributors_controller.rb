@@ -1,26 +1,21 @@
 class ContributorsController < ApplicationController
-  # POST /contributors
+
+  # POST /categories/:category_id/blogs/:blog_id/contributors
   def create
-    success = false
     @contributor = BlogsUser.new(contributors_params)
     if @contributor.save
-      message = 'Your request for contribution is successfully sent.'
-      success = true
+      flash.now[:notice] = 'Request for contribution sent successfully.'
     else
-      message = 'Something went wrong while sending request for contribution. Please try again.'
+      flash.now[:alert] = 'Something went wrong while sending request for contribution. Please try again.'
     end
 
     respond_to do |format|
-      if success
-        format.js { flash.now[:notice] = message }
-      else
-        format.js { flash.now[:alert] = message }
-      end
+      format.js
     end
   end
 
+  # PATCH /categories/:category_id/blogs/:blog_id/contributors/:id
   def update
-    success = false
     @contributor = BlogsUser.find(params[:id])
     if @contributor.update(status: params[:status])
       flash[:notice] = "Contributor #{params[:status]} successfully."

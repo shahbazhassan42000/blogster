@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   load_and_authorize_resource
 
+  # GET /comments/new
   def new
     respond_to do |format|
       format.html

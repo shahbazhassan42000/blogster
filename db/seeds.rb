@@ -64,8 +64,8 @@ end
     Blog.create!(
       title: Faker::Lorem.sentence,
       content: Faker::Lorem.paragraphs.join("\n\n"),
-      company: user.company,
-      author: user,
+      company_id: user.company.id,
+      author_id: user.id,
       category: user.company.categories.sample,
       excerpt: Faker::Lorem.paragraph,
       # featured_image: {

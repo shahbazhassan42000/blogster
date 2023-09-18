@@ -10,6 +10,7 @@ class Ability
         can :manage, :all
         cannot :create, BlogsUser
         cannot :update, Comment
+        can :update, Comment, commentor_id: user.id
       elsif user.author?
         can :manage, BlogsUser, blog: { author_id: user.id }
         can %i[create destroy], Blog, author_id: user.id

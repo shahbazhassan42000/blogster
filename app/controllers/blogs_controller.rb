@@ -2,44 +2,69 @@ class BlogsController < ApplicationController
   load_and_authorize_resource
   include ApplicationHelper
 
+  # GET /user/:user_id/blogs/new
   def new
     respond_to do |format|
       format.html
     end
   end
 
+  # POST /user/:user_id/blogs
   def create
+    success = false
     @blog = Blog.new(blog_params)
-    @blog.company = current_user.company
-    @blog.author = current_user
+    @blog.company_id = current_user.company.id
+    @blog.author_id = current_user.id
 
     if @blog.save
       flash[:notice] = 'Blog successfully created!'
-      redirect_to user_path(current_user)
+      success = true
     else
       flash.now[:alert] = @blog.errors.full_messages.join(', ')
-      render 'blogs/new'
+    end
+
+    respond_to do |format|
+      if success
+        format.html { redirect_to user_path(current_user) }
+      else
+        format.html { render 'blogs/new' }
+      end
     end
   end
 
+  # GET /categories/:category_id/blogs/:id
   def show
     @blog = Blog.find(params[:id])
+
+    respond_to do |format|
+      format.html
+    end
   end
 
+  # DELETE /categories/:category_id/blogs/:id
   def destroy
     @blog.destroy
     if @blog.destroyed?
-      redirect_to dashboard_url(current_user), notice: 'Blog deleted successfully!'
+      flash[:notice] = 'Blog deleted successfully!'
     else
-      redirect_to dashboard_url(current_user), alert: 'Error while deleting blog, please try again later.'
+      flash[:alert] = 'Error while deleting blog, please try again later.'
+    end
+
+    respond_to do |format|
+      format.html { redirect_to dashboard_url(current_user) }
     end
   end
 
+  # PATCH /categories/:category_id/blogs/:id
   def update
     if @blog.update(blog_params)
-      redirect_to dashboard_url(current_user), notice: 'Blog updated successfully!'
+      flash[:notice] = 'Blog updated successfully!'
     else
-      redirect_to dashboard_url(current_user), alert: 'Error while updating blog, please try again later.'
+      flash[:alert] = 'Error while updating blog, please try again later.'
+    end
+
+    respond_to do |format|
+      format.html { redirect_to dashboard_url(current_user) }
     end
   end
 
@@ -52,6 +77,6 @@ class BlogsController < ApplicationController
   end
 
   def blog_params
-    params.require(:blog).permit(:title, :category_id, :content, :excerpt, :featured_image)
+    params.require(:blog).permit(:title, :company_id, :author_id, :category_id, :content, :excerpt, :featured_image)
   end
 end
