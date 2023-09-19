@@ -1,10 +1,6 @@
 class Blog < ApplicationRecord
   default_scope { where(company_id: Current.company.id) }
 
-  # elastic search
-  # include Elasticsearch::Model
-  # include Elasticsearch::Model::Callbacks
-
   belongs_to :company
   belongs_to :category, inverse_of: :blogs
   belongs_to :author, class_name: 'User', foreign_key: 'author_id'
@@ -20,30 +16,6 @@ class Blog < ApplicationRecord
   validates :company, presence: true
   validates :category, presence: true
   validates :author, presence: true
-
-
-
-  # settings do
-  #   mappings dynamic: 'false' do
-  #     indexes :title, type: 'text', analyzer: 'english'
-  #     indexes :excerpt, type: 'text', analyzer: 'english'
-  #     indexes :author, type: 'nested' do
-  #       indexes :username, type: 'text', analyzer: 'english'
-  #     end
-  #   end
-  # end
-
-  # mapping dynamic: 'false' do
-  #   indexes :title, type: 'text'
-  # end
-
-  # mapping do
-  #   indexes :title, type: 'text' #, analyzer: 'english'
-  #   # indexes :author, type: 'object' do
-  #   #   indexes :username, type: 'text'
-  #   # end
-  #   indexes :excerpt, type: 'text' #, analyzer: 'english'
-  # end
 
   scope :published, -> { where(status: :published) }
   scope :archived, -> { where(status: :archived) }

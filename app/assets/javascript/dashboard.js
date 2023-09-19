@@ -1,3 +1,5 @@
 $(document).ready( function() {
-  $('#blogs_table').DataTable();
+  if(!$('#blogs_table_length').length) {
+    $('#blogs_table').dataTable();
+  }
 });
