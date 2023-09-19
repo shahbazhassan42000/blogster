@@ -19,7 +19,7 @@ class UserController < ApplicationController
 
   #GET /users/1/contributors
   def contributors
-    @pagy, @contributors = pagy(current_user.owner? ? BlogsUser.all : BlogsUser.where(blog_id: current_user.blogs.pluck(:id)))
+    @pagy, @contributors = pagy(current_user.owner? ? BlogsUser.eager_load(:blog, :user).all : BlogsUser.eager_load(:blog, :user).where(blog_id: current_user.blogs.pluck(:id)))
 
     respond_to do |format|
       format.html

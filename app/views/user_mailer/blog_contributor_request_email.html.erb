@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+      <% if @action == 'requested' %>
+        <strong><%= @blog_user.user.username %></strong> requested for the contribution in the blog <strong><%= @blog_user.blog.title %></strong>.
+      <% else %>
+        <strong><%= @actor.username %> <%= @action %></strong> the contribution request of <strong><%= @blog_user.user.username %></strong> for the blog <strong><%= @blog_user.blog.title %></strong>.
+      <% end %>
+    </p>
+  </body>
+</html>

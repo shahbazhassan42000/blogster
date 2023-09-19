@@ -1,4 +1,5 @@
 class ContributorsController < ApplicationController
+  before_action :set_current_user, only: %i[create update]
 
   # POST /categories/:category_id/blogs/:blog_id/contributors
   def create

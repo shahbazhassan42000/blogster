@@ -34,12 +34,14 @@
               <td class=<%= contributor.status %>><%= contributor.status %></td>
               <td class="p-0">
                 <div class='d-flex justify-content-center pt-2'>
-                  <% if contributor.pending? %>
-                    <%= link_to category_blog_contributor_path(contributor.blog.category.id, contributor.blog.id, contributor.id, status: :approved), method: :put, data: { confirm: "Are you sure?" } do %>
-                      <i class='fa fa-check bg-success text-white p-2 card m-0 mr-3' title='Approve'></i>
-                    <% end %>
-                    <%= link_to category_blog_contributor_path(contributor.blog.category.id, contributor.blog.id, contributor.id, status: :rejected), method: :put, data: { confirm: "Are you sure?" } do %>
-                      <i class='fa fa-close bg-danger text-white p-2 card m-0' title='Reject'></i>
+                  <% if can? :update, contributor %>
+                    <% if contributor.pending?  %>
+                      <%= link_to category_blog_contributor_path(contributor.blog.category.id, contributor.blog.id, contributor.id, status: :approved), method: :put, data: { confirm: "Are you sure?" } do %>
+                        <i class='fa fa-check bg-success text-white p-2 card m-0 mr-3' title='Approve'></i>
+                      <% end %>
+                      <%= link_to category_blog_contributor_path(contributor.blog.category.id, contributor.blog.id, contributor.id, status: :rejected), method: :put, data: { confirm: "Are you sure?" } do %>
+                        <i class='fa fa-close bg-danger text-white p-2 card m-0' title='Reject'></i>
+                      <% end %>
                     <% end %>
                   <% end %>
                 </div>

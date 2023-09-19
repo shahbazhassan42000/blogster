@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
   load_and_authorize_resource
   include ApplicationHelper
+  before_action :set_current_user, only: %i[create update destroy]
 
   # GET /user/:user_id/blogs/new
   def new
@@ -34,7 +35,7 @@ class BlogsController < ApplicationController
 
   # GET /categories/:category_id/blogs/:id
   def show
-    @blog = Blog.find(params[:id])
+    # @blog = Blog.find(params[:id])
 
     respond_to do |format|
       format.html

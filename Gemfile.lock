@@ -86,9 +86,9 @@ GEM
       elasticsearch-transport (= 7.17.8)
     elasticsearch-api (7.17.8)
       multi_json
-    elasticsearch-model (0.1.8)
+    elasticsearch-model (7.2.1)
       activesupport (> 3)
-      elasticsearch (> 0.4)
+      elasticsearch (~> 7)
       hashie
     elasticsearch-rails (7.2.1)
     elasticsearch-transport (7.17.8)
@@ -290,7 +290,7 @@ DEPENDENCIES
   bootstrap (~> 4.2.1)
   cancancan
   devise (~> 4.9)
-  elasticsearch-model (~> 0.1.8)
+  elasticsearch-model (~> 7.2, >= 7.2.1)
   elasticsearch-rails (~> 7.2, >= 7.2.1)
   faker
   guard-livereload

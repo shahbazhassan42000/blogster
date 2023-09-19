@@ -29,7 +29,7 @@ end
 gem 'bootstrap', '~> 4.2.1'
 gem 'cancancan'
 gem 'devise', '~> 4.9'
-gem 'elasticsearch-model', '~> 0.1.8'
+gem 'elasticsearch-model', '~> 7.2', '>= 7.2.1'
 gem 'elasticsearch-rails', '~> 7.2', '>= 7.2.1'
 gem 'faker'
 gem 'guard-livereload'

@@ -1,8 +1,11 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
 
+  # include Elasticsearch::Model
+  # include Elasticsearch::Model::Callbacks
+
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable
   enum role: %i[owner author]
+
 
   belongs_to :company, inverse_of: :users
   has_many :blogs, inverse_of: :author, foreign_key: 'author_id'

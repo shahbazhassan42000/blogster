@@ -1,5 +1,4 @@
 class BlogsUser < ApplicationRecord
-  # , status: :approved
   default_scope { where(company_id: Current.company.id).order(status: :asc) }
 
   belongs_to :blog
@@ -14,4 +13,17 @@ class BlogsUser < ApplicationRecord
   scope :approved, -> { where(status: :approved) }
   scope :rejected, -> { where(status: :rejected) }
   scope :by_blog, ->(blog) { where(blog: blog) }
+
+  after_create :send_blog_contributor_request_email
+  after_update :send_blog_contributor_request_status_email
+
+  private
+
+  def send_blog_contributor_request_email
+    UserMailer.with(blog_user: self, action: 'requested').blog_contributor_request_email.deliver_now
+  end
+
+  def send_blog_contributor_request_status_email
+    UserMailer.with(blog_user: self, action: status).blog_contributor_request_email.deliver_now
+  end
 end

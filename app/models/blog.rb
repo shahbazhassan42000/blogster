@@ -21,6 +21,8 @@ class Blog < ApplicationRecord
   validates :category, presence: true
   validates :author, presence: true
 
+
+
   # settings do
   #   mappings dynamic: 'false' do
   #     indexes :title, type: 'text', analyzer: 'english'
@@ -31,6 +33,9 @@ class Blog < ApplicationRecord
   #   end
   # end
 
+  # mapping dynamic: 'false' do
+  #   indexes :title, type: 'text'
+  # end
 
   # mapping do
   #   indexes :title, type: 'text' #, analyzer: 'english'

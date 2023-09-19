@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   load_and_authorize_resource
+  before_action :set_current_user, only: %i[create update destroy]
 
   # GET /comments/new
   def new

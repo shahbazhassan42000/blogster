@@ -32,6 +32,10 @@ class ApplicationController < ActionController::Base
     Current.company = Company.find_by(slug: request.subdomain) if request.subdomain.present?
   end
 
+  def set_current_user
+    Current.user = current_user
+  end
+
   def company_not_found
     render404 unless Current.company.present?
   end
