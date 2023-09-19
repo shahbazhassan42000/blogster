@@ -1,5 +1,5 @@
 $(document).ready( function() {
-  var comment_form = $("#comment_form");
+  var comment_form = $('#comment_form');
   var comment_modal = $('#comment_modal');
   var comment_text_field = $("#comment_text_field");
   var comments_list = $('#comments_list');
@@ -76,7 +76,11 @@ $(document).ready( function() {
   });
 
    // open modal
-  $("#add_comment_btn").on('click', function(){ comment_modal.show() });
+  $('#add_comment_btn').on('click', function(){ 
+    comment_modal.show();
+    $('#header').css('z-index', '0');
+
+  });
 
    // error message close button
   $('#comment_error_close_btn').on('click', function(){ $('#comment_error').hide() });
@@ -91,6 +95,7 @@ $(document).ready( function() {
     e.preventDefault();
     comment_text_field.val("");
     comment_modal.hide();
+    $('#header').css('z-index', '1021');
   });
   
 });

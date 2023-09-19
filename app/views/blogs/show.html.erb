@@ -1,4 +1,4 @@
-<%= javascript_include_tag 'comment', media: 'all', 'data-turbolinks-track': 'reload' %>
+
 <%= javascript_include_tag 'contributor', media: 'all', 'data-turbolinks-track': 'reload' %>
 
 <nav aria-label="breadcrumb" class="my-2">
@@ -32,13 +32,13 @@
   <aside class='border-left col-md-3 d-none d-lg-flex flex-column' >
     <div class="sticky-top" style="top: 8rem;">
       <%# Author card %>
-      <div class='d-flex flex-column align-items-center' >
-        <div class="card pt-3 mx-3 shadow">
-          <div class='card-img-top px-5'>
-            <%= image_tag resource_image_url(@blog.author, :avatar, 'default_profile_picture.png'), class: 'w-100 h-100 object-fit-cover' %>
+      <div class='d-flex flex-column align-items-center mx-3'>
+        <div class="card p-3 shadow w-100">
+          <div class='card-img-top mx-auto rounded-circle' style="width: 200px;">
+            <%= image_tag resource_image_url(@blog.author, :avatar, 'default_profile_picture.png'), class: 'w-100 h-100 object-fit-cover rounded-circle' %>
           </div>
-          <div class="card-body">
-            <h3 class="card-title text-center"><%= @blog.author.username %></h3>
+          <div class="card-body p-0 mt-2">
+            <h3 class="card-title text-center mb-1"><%= @blog.author.username %></h3>
             <p class="card-text text-muted text-center"><%= @blog.author.email if user_signed_in? %></p>
           </div>
         </div>
@@ -64,6 +64,26 @@
             </button>
           </p>
         </div>
+      <% end %>
+      <%# Contributors List %>
+      <% if can? :destroy, @blog %>
+      <div class="mx-3 my-4">
+        <h4 class="text-center">Contributors</h4>
+        <div class="card shadow mx-3">
+          <div class="card-body">
+            <div class="d-flex flex-column" style="max-height: 200px; overflow-y: auto;">
+              <% @blog.contributors.each do |contributor| %>
+                <div class="d-flex justify-content-between align-items-center py-2">
+                  <div class="d-flex align-items-center">
+                    <%= image_tag resource_image_url(contributor, :avatar, 'default_profile_picture.png'), class: 'rounded-circle mr-2', width: 40, height: 40 %>
+                    <span class="text-truncate"><%= contributor.username %></span>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
       <% end %>
     </div>
   </aside>

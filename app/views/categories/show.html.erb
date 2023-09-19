@@ -1,20 +1,31 @@
-<main class="mt-2 custom-wrapper">
+<div class="mt-2">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb pl-0 bg-transparent">
       <li class="breadcrumb-item"><%= link_to 'Categories', root_path %></li>
       <li class="breadcrumb-item active" aria-current="page"><%= @category.name %></li>
     </ol>
   </nav>
-  <section class='col-md-12'>
-    <div class='row justify-content-center'>
-      <% if @blogs.present? %>
-        <% @blogs.each do |blog| %>
-          <%= render "shared/blog_card", blog: blog%>
+  <section class='row justify-content-center'>
+    <main class='col-md-8'>
+      <div class='row justify-content-center'>
+        <% if @blogs.present? %>
+          <% @blogs.each do |blog| %>
+            <%= render "shared/blog_card", blog: blog%>
+          <% end %>
+          <%= render "shared/pagy_nav" %>
+        <% else %>
+          <%= image_tag 'no_record.gif', alt: 'No blogs found' %>
         <% end %>
-      <% else %>
-        <%= image_tag 'no_record.gif', alt: 'No blogs found' %>
-      <% end %>
-    </div>
-    <%= render "shared/pagy_nav" if @blogs.size > 20 %>
+      </div>
+      
+    </main>
+    <aside class='border-left col-md-4 d-none d-lg-flex flex-column' >
+      <div class="sticky-top" style="top: 8rem;">
+        <%# Comments %>
+        <div>
+          <%= render 'shared/comments', resource: @category%>
+        </div>
+      </div>
+    </aside>
   </section>
-</main>
+</div>

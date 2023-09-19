@@ -9,9 +9,9 @@ class UserMailer < ApplicationMailer
   end
 
   def blog_email
-    @email_list = params[:email_list]
     @blog = params[:blog]
     @action = params[:action]
+    @email_list = [@blog.author.email, @blog.company.owner.email, @blog.contributors.map(&:email)]
 
     mail(to: @email_list, subject: "#{'New ' if @action == 'published'}Blog #{@action.capitalize}")
   end

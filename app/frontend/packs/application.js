@@ -11,6 +11,7 @@ import 'jquery'
 import '../js/bootstrap_js_files.js'
 import 'datatables.net-bs4'
 import "@fortawesome/fontawesome-free/js/all"
+import "@fortawesome/fontawesome-free/css/all"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

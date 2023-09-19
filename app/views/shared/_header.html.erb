@@ -1,4 +1,4 @@
-<navbar class = 'd-flex justify-content-between align-items-center sticky-top bg-white custom-wrapper' style="z-index: 9997">
+<nav id="header" class ='d-flex justify-content-between align-items-center sticky-top bg-white custom-wrapper' style="z-index: 1021">
   <%# logo %>
   <%= link_to root_path, id:'logo_link' do %>
     <div class = 'd-flex align-items-center'>
@@ -29,7 +29,7 @@
             <% end %>
             <%# notification icon %>
             <li class="nav-item mr-3">
-              <%= link_to "#{user_path(current_user)}/contributors", class: "d-flex align-items-center position-relative" do %>
+              <%= link_to "#{user_path(current_user)}/contributors", title: 'contributor requests',class: "d-flex align-items-center position-relative" do %>
                 <i class="fa fa-bell text-warning h3 pt-2"></i>
                 <span class="badge rounded-circle text-white bg-primary position-absolute" style="top: 1px; right: -5px;"><%= pending_requests_count %></span>
               <% end %>
@@ -67,4 +67,4 @@
       </div>
     </nav>
   </ul>
-</navbar>
+</nav>
