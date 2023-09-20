@@ -26,6 +26,11 @@ group :development do
   gem 'spring'
 end
 
+group :development, :test do
+  gem 'factory_bot_rails', '~> 6.2'
+  gem 'rspec-rails', '=4.0.1'
+end
+
 gem 'bootstrap', '~> 4.2.1'
 gem 'cancancan'
 gem 'devise', '~> 4.9'

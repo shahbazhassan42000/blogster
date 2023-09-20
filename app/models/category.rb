@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  include Tenantable
+  default_scope { where(company_id: Current.company.id) }
 
   belongs_to :company
   belongs_to :owner, class_name: 'User', foreign_key: 'owner_id', inverse_of: :categories
@@ -7,7 +7,6 @@ class Category < ApplicationRecord
   has_many :comments, as: :commentable
 
   validates :name, presence: true
-  validates :company, presence: true
   validates :owner, presence: true
 
   after_create :send_category_created_email

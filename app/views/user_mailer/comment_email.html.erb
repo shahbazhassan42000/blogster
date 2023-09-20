@@ -5,13 +5,7 @@
   </head>
   <body>
     <p>
-      <%= 'New ' if @action == 'created' %>comment has been <strong><%= @action %></strong> by <strong><%= @actor.username %></strong> on <%= @comment.commentable_type %> <strong><%= @comment.commentable_type == 'Blog' ? @comment.commentable.title  : @comment.commentable.name %></strong>.
+      <%= 'New ' if @action == 'created' %>comment has been <strong><%= @action %></strong> by <strong><%= @actor.username %></strong> on <%= @comment.commentable_type %> <a href=<%=  @url %> target="_blank"><%= @comment.commentable_type == 'Blog' ? @comment.commentable.title  : @comment.commentable.name %></a>.
     </p>
-    <% unless @action == 'deleted' %>
-      <p>
-        <a href=<%=  @url %> target="_blank" >View Commented <%= @comment.commentable_type %></a>
-      </p>
-    <% end %>
-    
   </body>
 </html>

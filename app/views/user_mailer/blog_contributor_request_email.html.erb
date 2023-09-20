@@ -6,9 +6,9 @@
   <body>
     <p>
       <% if @action == 'requested' %>
-        <strong><%= @blog_user.user.username %></strong> requested for the contribution in the blog <strong><%= @blog_user.blog.title %></strong>.
+        <strong><%= @blog_user.user.username %></strong> requested for the contribution in the blog <a href=<%=  @blog_url %> target="_blank"><%= @blog_user.blog.title %></a>.
       <% else %>
-        <strong><%= @actor.username %> <%= @action %></strong> the contribution request of <strong><%= @blog_user.user.username %></strong> for the blog <strong><%= @blog_user.blog.title %></strong>.
+        <strong><%= @actor.username %> <%= @action %></strong> the contribution request of <strong><%= @blog_user.user.username %></strong> for the blog <a href=<%=  @blog_url %> target="_blank"><%= @blog_user.blog.title %></a>.
       <% end %>
     </p>
   </body>

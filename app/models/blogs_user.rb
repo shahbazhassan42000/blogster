@@ -12,7 +12,6 @@ class BlogsUser < ApplicationRecord
   scope :pending, -> { where(status: :pending) }
   scope :approved, -> { where(status: :approved) }
   scope :rejected, -> { where(status: :rejected) }
-  scope :by_blog, ->(blog) { where(blog: blog) }
 
   after_create :send_blog_contributor_request_email
   after_update :send_blog_contributor_request_status_email

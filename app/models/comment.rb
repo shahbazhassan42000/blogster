@@ -21,4 +21,6 @@ class Comment < ApplicationRecord
   def send_comment_deleted_email
     UserMailer.with(comment: self, action: 'deleted').comment_email.deliver_now
   end
+
+
 end

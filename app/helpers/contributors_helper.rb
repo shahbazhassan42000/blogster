@@ -4,10 +4,10 @@ module ContributorsHelper
   end
 
   def is_requested?
-    @blog.contributors.exists?(current_user.id)
+    BlogsUser.where(blog_id: @blog.id, user_id: current_user.id, status: %i[pending approved]).exists?
   end
 
   def pending_requests_count
-    current_user.owner? ? BlogsUser.pending.count : BlogsUser.pending.where(blog_id: current_user.blogs.pluck(:id)).count
+    BlogsUser.pending.where(blog_id: current_user.blogs.pluck(:id)).count
   end
 end

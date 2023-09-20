@@ -5,13 +5,12 @@
   </head>
   <body>
     <p>
-      <%= 'New ' if @action == 'published' %>blog <strong><%= @blog.title %></strong> has been <strong><%= @action %></strong> by <strong><%= @actor.username %></strong>.
+      <% if @action == 'deleted' %>
+        <%= 'New ' if @action == 'published' %>blog <strong><%= @blog.title %></strong> has been <strong><%= @action %></strong> by <strong><%= @actor.username %><strong></strong>.
+      <% else %>
+        <%= 'New ' if @action == 'published' %>blog <a href=<%=  @blog_url %> target="_blank"><%= @blog.title %></a> has been <strong><%= @action %></strong> by <strong><%= @actor.username %><strong></strong>.
+      <% end %>
     </p>
-    <% unless @action == 'deleted' %>
-      <p>
-        <a href=<%=  @blog_url %> target="_blank" >View <%= @action %> blog</a>
-      </p>
-    <% end %>
     
   </body>
 </html>

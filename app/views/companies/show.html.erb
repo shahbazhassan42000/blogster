@@ -4,6 +4,7 @@
   <%# Banner %>
   <main class='col-md-8 mt-5'>
     <%# Categories BLOGS %>
+    <% binding.pry %>
     <% Current.company.categories.first(5).each do |category| %> 
       <% if category.blogs.present? %>
         <div class="accordion border-bottom" id="category_<%= category.id %>_header_box">

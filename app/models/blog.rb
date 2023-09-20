@@ -30,14 +30,23 @@ class Blog < ApplicationRecord
   private
 
   def send_blog_created_email
-    UserMailer.with(blog: self, action: 'published').blog_email.deliver_now
+    UserMailer.with(email_to: author.email, blog: self, action: 'published').blog_email.deliver_now
+    UserMailer.with(email_to: company.owner.email, blog: self, action: 'published').blog_email.deliver_now unless author.id == company.owner.id
   end
 
   def send_blog_updated_email
-    UserMailer.with(blog: self, action: 'updated').blog_email.deliver_now
+    UserMailer.with(email_to: author.email, blog: self, action: 'updated').blog_email.deliver_now
+    UserMailer.with(email_to: company.owner.email, blog: self, action: 'updated').blog_email.deliver_now unless author.id == company.owner.id
+    contributors.each do |contributor|
+      UserMailer.with(email_to: contributor.email, blog: self, action: 'updated').blog_email.deliver_now
+    end
   end
 
   def send_blog_deleted_email
-    UserMailer.with(blog: self, action: 'deleted').blog_email.deliver_now
+    UserMailer.with(email_to: author.email, blog: self, action: 'deleted').blog_email.deliver_now
+    UserMailer.with(email_to: company.owner.email, blog: self, action: 'deleted').blog_email.deliver_now unless author.id == company.owner.id
+    contributors.each do |contributor|
+      UserMailer.with(email_to: contributor.email, blog: self, action: 'deleted').blog_email.deliver_now
+    end
   end
 end

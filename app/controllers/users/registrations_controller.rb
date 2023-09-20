@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    params[:user][:company_attributes][:slug] = params[:user][:company_attributes][:name].gsub(/[^a-zA-Z0-9]/, '').downcase if params[:user][:role] == 'owner'
+    params[:user][:company_attributes][:slug] = params[:user][:company_attributes][:name].gsub(/[^a-zA-Z0-9]/, '').downcase if params[:user][:company_attributes]
     super
   end
 

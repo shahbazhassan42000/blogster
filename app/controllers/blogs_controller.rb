@@ -14,8 +14,6 @@ class BlogsController < ApplicationController
   def create
     success = false
     @blog = Blog.new(blog_params)
-    @blog.company_id = current_user.company.id
-    @blog.author_id = current_user.id
 
     if @blog.save
       flash[:notice] = 'Blog successfully created!'

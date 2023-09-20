@@ -3,6 +3,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/new
   def show
+    Current.company.includes(:categories)
     respond_to do |format|
       format.html
     end
