@@ -11,6 +11,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/:id
   def show
+    @comments = @category.comments.includes(:commentor)
     @pagy, @blogs = pagy(@category.blogs)
     respond_to do |format|
       format.html

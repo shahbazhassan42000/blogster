@@ -11,11 +11,12 @@ class UserController < ApplicationController
 
   # GET /users/1
   def show
-    @pagy, @blogs = pagy(
-      current_user.owner? ?
-      Blog.all :
-      Blog.includes(:category, :author).where(author_id: current_user.id).or(Blog.includes(:category, :author).where(id: current_user.contributions.pluck(:id)))
-    )
+    if current_user.owner?
+      @pagy, @blogs = pagy(Blog.includes(:category, :author).all)
+    else
+      blog_inclusion = Blog.includes(:category, :author)
+      @pagy, @blogs = pagy(blog_inclusion.where(author_id: current_user.id).or(blog_inclusion.where(id: current_user.contributions.pluck(:id))))
+    end
 
     respond_to do |format|
       format.html
@@ -40,7 +41,8 @@ class UserController < ApplicationController
 
   # GET /users/1/report
   def report
-    @report = Report.new(Blog.all)
+    @blogs = Blog.includes(:category, :author, :contributors, :comments).all
+
     respond_to do |format|
       format.html
     end

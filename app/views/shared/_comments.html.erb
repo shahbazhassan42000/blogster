@@ -13,9 +13,10 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </p>
+  
   <div class="mx-3" id="comments_list">
-    <% if resource.comments.present? %>
-        <% resource.comments.each do |comment| %>
+    <% if comments.any? %>
+        <% comments.each do |comment| %>
           <%= render 'shared/comment', comment: comment %>
         <% end %>
     <% else %>
@@ -39,7 +40,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </p>
-          <%= form_with mode: resource.comments, url: comments_path, remote: true, id: "comment_form" do |form| %>
+          <%= form_with mode: comments, url: comments_path, remote: true, id: "comment_form" do |form| %>
             <div class="form-group">
               <%= form.text_area :content, class: 'form-control',id: 'comment_text_field',rows: 4,placeholder: "Enter your comment here...", required: true %>
             </div>

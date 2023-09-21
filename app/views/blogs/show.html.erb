@@ -25,7 +25,7 @@
       <p><%= simple_format(@blog.content) %></p>
       <%# Comments %>
       <div>
-        <%= render 'shared/comments', resource: @blog%>
+        <%= render 'shared/comments', comments: @comments, resource: @blog %>
       </div>
     </div>
   </main>

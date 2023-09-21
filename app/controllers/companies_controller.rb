@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/new
   def show
-    Current.company.includes(:categories)
+    Current.company = Company.includes(:categories).find_by(slug: request.subdomain)
     respond_to do |format|
       format.html
     end

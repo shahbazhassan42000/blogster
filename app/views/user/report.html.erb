@@ -4,7 +4,7 @@
   <section class='px-5'>
     <section class='my-5'>
       <h1>Blogs Report</h1>
-      <% if @report.blogs.any? %>
+      <% if @blogs.any? %>
         <div class="table-responsive">
           <div class="d-flex">
             <!-- Filters -->
@@ -37,23 +37,23 @@
               </tr>
             </thead>
             <tbody>
-              <% @report.blogs.each do |blog| %>
+              <% @blogs.each do |blog| %>
                 <tr>
-                  <td class="text-truncate"><%= blog[:title] %></td>
-                  <td class="text-truncate"><%= blog[:category] %></td>
-                  <td class="text-truncate"><%= blog[:comments_count] %></td>
-                  <td class="text-truncate"><%= blog[:author] %></td>
-                  <td class="text-truncate"><%= blog[:status] %></td>
-                  <td class="text-truncate"><%= blog[:contributors_count] %></td>
+                  <td class="text-truncate"><%= blog.title %></td>
+                  <td class="text-truncate"><%= blog.category.name %></td>
+                  <td class="text-truncate"><%= blog.comments.size %></td>
+                  <td class="text-truncate"><%= blog.author.username %></td>
+                  <td class="text-truncate"><%= blog.status %></td>
+                  <td class="text-truncate"><%= blog.contributors.size %></td>
                   <td>
                     <div class="d-flex flex-column">
-                      <%  blog[:contributors].each do |contributor| %>
-                        <span class="text-truncate"><%= contributor %></span>
+                      <%  blog.contributors.map(&:username).each do |contributor_username| %>
+                        <span class="text-truncate"><%= contributor_username %></span>
                       <% end %>
                     </div>
                   </td>
-                  <td class="text-truncate"><%= blog[:created_at].strftime("%d %b %Y") %></td>
-                  <td class="text-truncate"><%= blog[:updated_at].strftime("%d %b %Y") %></td>
+                  <td class="text-truncate"><%= blog.created_at.strftime("%d %b %Y") %></td>
+                  <td class="text-truncate"><%= blog.updated_at.strftime("%d %b %Y") %></td>
                 </tr>
               <% end %>
             </tbody>

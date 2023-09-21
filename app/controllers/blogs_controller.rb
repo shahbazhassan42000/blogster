@@ -33,8 +33,7 @@ class BlogsController < ApplicationController
 
   # GET /categories/:category_id/blogs/:id
   def show
-    # @blog = Blog.find(params[:id])
-
+    @comments = @blog.comments.includes(:commentor)
     respond_to do |format|
       format.html
     end
