@@ -19,7 +19,6 @@
     <%= form.text_area :excerpt, class: 'form-control', rows: 4, placeholder: 'Enter a short excerpt of your blog' %>
   </div>
 
-  <%= form.hidden_field :company_id, value: current_user.company.id unless blog.persisted? %>
   <%= form.hidden_field :author_id, value: current_user.id unless blog.persisted? %>
 
 

@@ -12,9 +12,8 @@ class BlogsController < ApplicationController
 
   # POST /user/:user_id/blogs
   def create
+    binding.pry
     success = false
-    @blog = Blog.new(blog_params)
-
     if @blog.save
       flash[:notice] = 'Blog successfully created!'
       success = true
